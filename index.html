@@ -696,7 +696,115 @@
             line-height: 1.6;
         }
 
-        /* Mobile Responsiveness */
+        /* Footer */
+        .footer {
+            background: rgba(45, 80, 22, 0.95);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 60px 50px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer-section h3 {
+            color: #8bc34a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: #8bc34a;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(139, 195, 74, 0.3);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Footer */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .footer-description {
+                max-width: 100%;
+            }
+        }
         @media (max-width: 768px) {
             .header {
                 padding: 15px 20px;
@@ -779,14 +887,9 @@
             <a href="index.html">Home</a>
             <a href="PeapodABOUTUS.HTML">About</a>
             <a href="PeapodSERVICES.HTML">Services</a>
-            <a href="PeapodHOWITWORKS.HTML">How It Works</a>
             <a href="PeapodCALCULATOR.HTML">Calculator</a>
-            <a href="PeapodLENDERS.HTML">Lenders</a>
             <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
             <a href="PeapodRESOURCES.HTML">Resources</a>
-            <a href="PeapodFAQ.HTML">FAQ</a>
-            <a href="PeapodCONTACTUS.HTML">Contact</a>
-            <a href="PeapodLEGAL.HTML">Legal</a>
         </nav>
         <div style="display: flex; gap: 15px; align-items: center;">
             <a href="PeapodLOGIN.HTML" class="header-signin">Sign In</a>
@@ -902,3 +1005,151 @@
 
     <!-- Testimonials Section -->
     <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="section-container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-subtitle">
+                    Real stories from real businesses that have grown with Peapod Finance.
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "Peapod Finance helped us secure $75,000 in working capital when traditional banks turned us down. 
+                        The process was incredibly smooth and our account manager was there every step of the way."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Martinez</h4>
+                            <p>CEO, Verde Restaurant Group</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "As a contractor, cash flow is everything. Peapod's quick approval process meant I could take on bigger projects without worrying about upfront costs. Game changer for my business!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Mike Johnson</h4>
+                            <p>Owner, Johnson Construction LLC</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "The transparency and support from Peapod was outstanding. They found us three different funding options and helped us choose the best fit. Highly recommend!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LR</div>
+                        <div class="author-info">
+                            <h4>Lisa Rodriguez</h4>
+                            <p>CFO, TechStart Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TrustPilot Section -->
+    <section class="trustpilot-section">
+        <div class="trustpilot-container">
+            <div class="trustpilot-logo">⭐ Trustpilot</div>
+            <div class="trustpilot-rating">
+                <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+                <div class="rating-text">4.8 out of 5</div>
+            </div>
+            <p class="trustpilot-reviews">
+                Based on 2,847 reviews | "Excellent" rating
+            </p>
+            <p style="margin-top: 20px; color: rgba(51, 51, 51, 0.6); font-style: italic;">
+                "Peapod Finance consistently delivers on their promises. Fast, reliable, and genuinely cares about small business success."
+            </p>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="final-cta-container">
+            <h2 class="final-cta-title">Ready to Grow?</h2>
+            <p class="final-cta-subtitle">
+                Join thousands of businesses that have successfully grown with Peapod Finance. 
+                See how much funding you qualify for in under 60 seconds.
+            </p>
+            
+            <div class="cta-container">
+                <a href="PeapodCALCULATOR.HTML" class="cta-primary">
+                    🌱 Check My Eligibility Now
+                </a>
+                <a href="PeapodSIGNUP.HTML" class="cta-secondary">
+                    📝 Create Free Account
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="footer-logo-icon">🌱</div>
+                        <span>PEAPOD FINANCE</span>
+                    </a>
+                    <p class="footer-description">
+                        Empowering businesses to grow naturally through accessible funding solutions and trusted partnerships.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <div class="footer-links">
+                        <a href="PeapodHOWITWORKS.HTML">How It Works</a>
+                        <a href="PeapodFAQ.HTML">FAQ</a>
+                        <a href="PeapodCONTACTUS.HTML">Contact Us</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="PeapodLENDERS.HTML">Our Lenders</a>
+                        <a href="PeapodSERVICES.HTML">Services</a>
+                        <a href="PeapodCALCULATOR.HTML">Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <div class="footer-links">
+                        <a href="PeapodABOUTUS.HTML">About Us</a>
+                        <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
+                        <a href="PeapodRESOURCES.HTML">Resources</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <div class="footer-links">
+                        <a href="PeapodLEGAL.HTML">Legal Terms</a>
+                        <a href="PeapodLEGAL.HTML">Privacy Policy</a>
+                        <a href="PeapodLEGAL.HTML">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Peapod Finance. All rights reserved. | Helping businesses grow naturally.</p>
+            </div>
+        </div>
+    </footer>
