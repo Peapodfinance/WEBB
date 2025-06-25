@@ -21,7 +21,7 @@
 
         /* Header */
         .header {
-            position: fixed;
+            position: relative;
             top: 0;
             left: 0;
             right: 0;
@@ -35,6 +35,11 @@
             border-bottom: 1px solid rgba(139, 195, 74, 0.2);
         }
 
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(139, 195, 74, 0.1);
+        }
+
         .logo {
             display: flex;
             align-items: center;
@@ -43,6 +48,11 @@
             font-weight: 700;
             color: #8bc34a;
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-icon {
@@ -59,24 +69,56 @@
 
         .nav {
             display: flex;
-            gap: 30px;
+            gap: 35px;
         }
 
         .nav a {
             color: rgba(51, 51, 51, 0.8);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8bc34a;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after, .nav a.active::after {
+            width: 100%;
         }
 
         .nav a:hover, .nav a.active {
             color: #8bc34a;
         }
 
+        .header-signin {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .header-signin:hover {
+            background: rgba(139, 195, 74, 0.1);
+            border-color: rgba(139, 195, 74, 0.3);
+            transform: translateY(-1px);
+        }
+
         .header-cta {
             background: linear-gradient(135deg, #8bc34a, #7bb239);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 25px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
@@ -87,6 +129,7 @@
         .header-cta:hover {
             background: linear-gradient(135deg, #7bb239, #689f38);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 195, 74, 0.4);
         }
 
         /* Floating Elements */
@@ -145,7 +188,7 @@
 
         /* Main Content */
         .main-content {
-            margin-top: 100px;
+            margin-top: 20px;
             padding: 50px;
             max-width: 1400px;
             margin-left: auto;
@@ -393,6 +436,97 @@
             right: -120px;
         }
 
+        /* Footer */
+        .footer {
+            background: rgba(45, 80, 22, 0.95);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 60px 50px 30px;
+            position: relative;
+            z-index: 10;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer-section h3 {
+            color: #8bc34a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: #8bc34a;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(139, 195, 74, 0.3);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .header {
@@ -403,6 +537,17 @@
 
             .nav {
                 gap: 20px;
+            }
+
+            .header div {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+
+            .header-signin, .header-cta {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
             }
 
             .main-content {
@@ -439,6 +584,23 @@
             .service-title {
                 font-size: 1.7rem;
             }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .footer-description {
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -473,19 +635,23 @@
     </div>
 
     <!-- Header -->
-    <header class="header">
-        <a href="#home" class="logo">
+    <header class="header" id="header">
+        <a href="index.html" class="logo">
             <div class="logo-icon">🌱</div>
             <span>PEAPOD</span>
         </a>
         <nav class="nav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services" class="active">Services</a>
-            <a href="#partnerships">Partnerships</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html">Home</a>
+            <a href="PeapodABOUTUS.HTML">About</a>
+            <a href="PeapodSERVICES.HTML" class="active">Services</a>
+            <a href="PeapodCALCULATOR.HTML">Calculator</a>
+            <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
+            <a href="PeapodRESOURCES.HTML">Resources</a>
         </nav>
-        <a href="#qualify" class="header-cta">Get Started</a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="PeapodLOGIN.HTML" class="header-signin">Sign In</a>
+            <a href="PeapodSIGNUP.HTML" class="header-cta">Get Started</a>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -629,7 +795,74 @@
         </section>
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="footer-logo-icon">🌱</div>
+                        <span>PEAPOD FINANCE</span>
+                    </a>
+                    <p class="footer-description">
+                        Empowering businesses to grow naturally through accessible funding solutions and trusted partnerships.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <div class="footer-links">
+                        <a href="PeapodHOWITWORKS.HTML">How It Works</a>
+                        <a href="PeapodFAQ.HTML">FAQ</a>
+                        <a href="PeapodCONTACTUS.HTML">Contact Us</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="PeapodLENDERS.HTML">Our Lenders</a>
+                        <a href="PeapodSERVICES.HTML">Services</a>
+                        <a href="PeapodCALCULATOR.HTML">Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <div class="footer-links">
+                        <a href="PeapodABOUTUS.HTML">About Us</a>
+                        <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
+                        <a href="PeapodRESOURCES.HTML">Resources</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <div class="footer-links">
+                        <a href="PeapodLEGAL.HTML">Legal Terms</a>
+                        <a href="PeapodLEGAL.HTML">Privacy Policy</a>
+                        <a href="PeapodLEGAL.HTML">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Peapod Finance. All rights reserved. | Helping businesses grow naturally.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // Header scroll effect - removed since header is no longer fixed
+        // window.addEventListener('scroll', function() {
+        //     const header = document.getElementById('header');
+        //     if (window.scrollY > 100) {
+        //         header.classList.add('scrolled');
+        //     } else {
+        //         header.classList.remove('scrolled');
+        //     }
+        // });
+
         let currentCard = 0;
         const totalCards = 4;
         const cards = document.querySelectorAll('.service-card');
