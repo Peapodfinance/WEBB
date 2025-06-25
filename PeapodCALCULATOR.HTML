@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Peapod Finance - Business Lender Matcher</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    /* Floating Elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .floating-leaf {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.1;
+      animation: leafFloat 20s infinite linear;
+    }
+
+    .floating-leaf:nth-child(1) {
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+      animation-duration: 25s;
+    }
+
+    .floating-leaf:nth-child(2) {
+      top: 70%;
+      right: 15%;
+      animation-delay: 8s;
+      animation-duration: 30s;
+    }
+
+    .floating-leaf:nth-child(3) {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 15s;
+      animation-duration: 22s;
+    }
+
+    @keyframes leafFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      33% {
+        transform: translateY(-20px) rotate(120deg);
+      }
+      66% {
+        transform: translateY(10px) rotate(240deg);
+      }
+    }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+      border: 1px solid rgba(139, 195, 74, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(139, 195, 74, 0.2);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      grid-column: 1 / -1;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #8bc34a, #7bb239);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .header p {
+      color: rgba(51, 51, 51, 0.7);
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .form-container h2 {
+      color: #8bc34a;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .form-container h2::before {
+      content: "🌱";
+      font-size: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 600;
+      color: #8bc34a;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid rgba(139, 195, 74, 0.3);
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #8bc34a;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #8bc34a, #7bb239);
+      color: white;
+      border: none;
+      padding: 18px 35px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 20px;
+      box-shadow: 0 8px 20px rgba(139, 195, 74, 0.3);
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #7bb239, #689f38);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(139, 195, 74, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .results-container h2 {
+      color: #8bc34a;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .results-container h2::before {
+      content: "🏦";
+      font-size: 1.5rem;
+    }
+
+    .results-content {
+      text-align: center;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(51, 51, 51, 0.6);
+      font-style: italic;
+    }
+
+    .empty-state::before {
+      content: "🌿";
+      display: block;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .empty-state p {
+      font-size: 1.1rem;
+    }
+
+    .eligibility-display {
+      padding: 40px 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eligibility-display::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.8s ease;
+    }
+
+    .eligibility-display:hover::before {
+      left: 100%;
+    }
+
+    .eligible-results {
+      background: linear-gradient(135deg, rgba(139, 195, 74, 0.15), rgba(139, 195, 74, 0.25));
+      border: 2px solid rgba(139, 195, 74, 0.4);
+      color: #2d5016;
+    }
+
+    .no-eligible-results {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.2));
+      border: 2px solid rgba(220, 53, 69, 0.3);
+      color: #721c24;
+    }
+
+    .eligibility-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .eligibility-title {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .eligibility-subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .lender-count {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #8bc34a;
+      margin: 10px 0;
+      text-shadow: 0 2px 4px rgba(139, 195, 74, 0.3);
+    }
+
+    .signup-button {
+      background: linear-gradient(135deg, #8bc34a, #7bb239);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 8px 25px rgba(139, 195, 74, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .signup-button:hover {
+      background: linear-gradient(135deg, #7bb239, #689f38);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(139, 195, 74, 0.5);
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid rgba(139, 195, 74, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(139, 195, 74, 0.2);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #8bc34a;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: rgba(51, 51, 51, 0.7);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    .improvement-tips {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 20px;
+      border: 1px solid rgba(139, 195, 74, 0.2);
+    }
+
+    .improvement-tips h3 {
+      color: #8bc34a;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .improvement-tips h3::before {
+      content: "💡";
+    }
+
+    .tips-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tips-list li {
+      padding: 8px 0;
+      color: rgba(51, 51, 51, 0.8);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .tips-list li::before {
+      content: "•";
+      color: #8bc34a;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        padding: 25px;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .eligibility-title {
+        font-size: 1.5rem;
+      }
+
+      .lender-count {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Elements -->
+  <div class="floating-elements">
+    <div class="floating-leaf">🌿</div>
+    <div class="floating-leaf">🍃</div>
+    <div class="floating-leaf">🌱</div>
+  </div>
+
+  <div class="header">
+    <h1>🌱 Peapod Lender Matcher</h1>
+    <p>Discover your financing opportunities in seconds</p>
+  </div>
+
+  <div class="main-container">
+    <div class="card form-container">
+      <h2>Business Information</h2>
+      <form id="calculatorForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="personalCredit">Personal Credit Score</label>
+            <input type="number" id="personalCredit" min="300" max="850" required>
+          </div>
+
+          <div class="form-group">
+            <label for="monthlyRevenue">Monthly Gross Revenue ($)</label>
+            <input type="number" id="monthlyRevenue" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="deposits">Number of Deposits</label>
+            <input type="number" id="deposits" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="nsfs">Number of NSFs</label>
+            <input type="number" id="nsfs" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="avgBalance">Average Daily Balance ($)</label>
+            <input type="number" id="avgBalance" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="monthsBusiness">Months in Business</label>
+            <input type="number" id="monthsBusiness" min="0" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="industry">Industry</label>
+            <select id="industry" required>
+              <option value="">-- Select Industry --</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">🌱 Find My Matches</button>
+      </form>
+    </div>
+
+    <div class="card results-container">
+      <h2>Your Results</h2>
+      <div id="resultsContent" class="results-content">
+        <div class="empty-state">
+          <p>Enter your business information to discover your financing opportunities</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const lenders = [
+      { name: "One Team(1st)", criteria: { personalCredit: 650, monthlyRevenue: 25000, deposits: 2, nsfs: 2, avgBalance: 1000, monthsBusiness: 12 }, restrictedIndustries: ["Law Firms", "Pawn Shops", "Finance/Investment/Banks", "Non-Profit", "Real Estate", "Money Services Businesses", "Marijuana/CBD", "Trucking", "Transportation", "Bail-Bonds"] },
+      { name: "PEAC Solutions(1st)", criteria: { personalCredit: 675, monthlyRevenue: 42000, deposits: 5, nsfs: 3, avgBalance: 4200, monthsBusiness: 36 }, restrictedIndustries: ["Auto Sales", "Cleaning and Maintenance", "Construction", "Farming", "Finance/Investment/Banks", "Hotels & Lodging Memberships", "Law Firms", "Mining & Quarries", "Non-Profit", "Trucking", "Transportation", "Casino/ Gambling", "Adult Entertainment"] },
+      { name: "IDEA Financial", criteria: { personalCredit: 625, monthlyRevenue: 15000, deposits: 6, nsfs: 3, avgBalance: 4000, monthsBusiness: 24 }, restrictedIndustries: ["Farming", "Auto Sales", "Auto Rentals", "Oil & Gas", "Finance/Investment/Banks", "Bail-Bonds", "Finance", "Property Management", "Real Estate", "Education", "Marijuana/CBD", "Multi-Level Marketing Sales", "Brokers", "Mining & Quarries", "Government Services", "Gold Dealers", "Gun Sales", "Trucking", "Transportation", "Truck Leasing"] },
+      { name: "Kapitus(1st)", criteria: { personalCredit: 625, monthlyRevenue: 10000, deposits: 5, nsfs: 3, avgBalance: 600, monthsBusiness: 12 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales", "Marijuana/CBD", "Cell Phone Stores", "Colleges/Universities", "Credit Repair", "Finance/Investment/Banks", "Government Services", "Insurance", "Boat Sales", "Non-Profit", "Auto Rentals", "Casino/ Gambling"] },
+      { name: "OnDeck(1st)", criteria: { personalCredit: 625, monthlyRevenue: 15000, deposits: 5, nsfs: 3, avgBalance: 1000, monthsBusiness: 24 }, restrictedIndustries: ["Adult Entertainment", "Art Dealer", "Auto Sales", "Bail-Bonds", "Birth Tourism", "Boat Sales", "Brokers", "Marijuana/CBD", "Casino/ Gambling", "Cell Phone Stores", "Gold Dealers", "Gun Sales", "Horoscope/ Fortune Telling", "Money Services Businesses", "Multi-Level Marketing Sales", "Non-Profit", "Outdoor Power Equipment Stores", "Pawn Shops", "Private Households", "Religious/Civic Organizations", "RV Dealer"] },
+      { name: "Headway Capital", criteria: { personalCredit: 600, monthlyRevenue: 5000, deposits: 1, nsfs: 3, avgBalance: 500, monthsBusiness: 6 }, restrictedIndustries: ["Adult Entertainment", "Art Dealer", "Auto Sales", "Bail-Bonds", "Birth Tourism", "Boat Sales", "Brokers",  "Marijuana/CBD", "Casino/ Gambling", "Cell Phone Stores", "Gold Dealers", "Gun Sales", "Horoscope/ Fortune Telling", "Money Services Businesses", "Multi-Level Marketing Sales", "Non-Profit", "Outdoor Power Equipment Stores", "Pawn Shops", "Private Households", "Religious/Civic Organizations", "RV Dealer"] },
+      { name: "Credibly", criteria: { personalCredit: 550, monthlyRevenue: 20000, deposits: 4, nsfs: 7, avgBalance: 1000, monthsBusiness: 6 }, restrictedIndustries: ["Auto Sales", "Adult Entertainment", "Bail-Bonds", "Brokers", "Casino/ Gambling", "Credit Repair", "Dating Services", "Dickey's BBQ Franchises", "Government Agencies", "Gun Sales", "Law Firms", "Marijuana/CBD", "Multi-Level Marketing Sales", "Non-Profit", "Oil & Gas", "Religious/Civic Organizations", "Vape Shop", "Warrenty Services", "Trucking", "Transportation"] },
+      { name: "Mulligan(1st)", criteria: { personalCredit: 625, monthlyRevenue: 25000, deposits: 4, nsfs: 3, avgBalance: 3000, monthsBusiness: 6 }, restrictedIndustries: ["Adult Entertainment", "Art Dealer", "Auto Sales", "Bail-Bonds", "Birth Tourism", "Boat Sales", "Brokers",  "Marijuana/CBD", "Casino/ Gambling", "Cell Phone Stores", "Gold Dealers", "Gun Sales", "Horoscope/ Fortune Telling", "Money Services Businesses", "Multi-Level Marketing Sales", "Non-Profit", "Outdoor Power Equipment Stores", "Pawn Shops", "Private Households", "Religious/Civic Organizations", "RV Dealer", "Finance/Investment/Banks", "Food Trucks", "Law Firms", "Non-Profit", "Real Estate", "Trucking", "Transportation", "Vending", "Vape Shop", "Insurance", "Restaurant"] },
+      { name: "Rapid Finance(1st)", criteria: { personalCredit: 600, monthlyRevenue: 10000, deposits: 3, nsfs: 5, avgBalance: 1000, monthsBusiness: 24 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales", "Bail-Bonds", "Casino/ Gambling", "Collections", "Finance/Investment/Banks", "Gun Sales", "Influencers", "Law Firms", "Marijuana/CBD", "Multi-Level Marketing Sales", "Nightclub", "Non-Profit", "Real Estate", "Religious/Civic Organizations", "Trucking", "Transportation", "Vape Shop", "Property Management"] },
+      { name: "Expansion", criteria: { personalCredit: 550, monthlyRevenue: 6000, deposits: 2, nsfs: 6, avgBalance: 550, monthsBusiness: 6 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales","Bail-Bonds", "Boat Sales", "Business Associations/Unions", "Call Centers", "Card Processors", "Casino/ Gambling", "Collections", "Finance/Investment/Banks", "Government Agencies", "Law Firms", "Lead Generators", "Lease-to-own Businesses", "Marijuana/CBD", "Mining & Quarries", "Multi-Level Marketing Sales", "Non-Profit", "Pawn Shops", "PREC.METALS", "Religious/Civic Organizations", "Brokers", "Travel Agencies"] },
+      { name: "Kalamata(ASK BEN)", criteria: { personalCredit: 600, monthlyRevenue: 18000, deposits: 4, nsfs: 3, avgBalance: 750, monthsBusiness: 12 }, restrictedIndustries: ["Adult Entertainment", "Education", "Auto Sales", "Farming", "Gas & Oil", "Gun Sales", "Law Firms", "Marijuana/CBD", "Non-Profit", "Pawn Shops", "PREC.METALS", "Real Estate", "Retail", "Religious/Civic Organizations", "Trucking", "Transportation", "Towing"] },
+      { name: "Fundation MCA", criteria: { personalCredit: 600, monthlyRevenue: 20000, deposits: 2, nsfs: 2, avgBalance: 1000, monthsBusiness: 6 }, restrictedIndustries: ["Law Firms", "Pawn Shops", "Non-Profit", "Real Estate", "Money Services Businesses", "Marijuana/CBD", "Trucking", "Transportation", "Bail-Bonds", "Finance/Investment/Banks"] },
+      { name: "Greenwich Capital", criteria: { personalCredit: 600, monthlyRevenue: 50000, deposits: 3, nsfs: 3, avgBalance: 1000, monthsBusiness: 24 }, restrictedIndustries: ["Accounting", "Auto Rentals", "Auto Sales", "Bail-Bonds", "Brokers", "Cell Phone Stores", "Finance/Investment/Banks", "Food Trucks", "Law Firms", "Non-Profit", "Real Estate", "Trucking", "Transportation", "Vending"] },
+      { name: "CFG", criteria: { personalCredit: 500, monthlyRevenue: 15000, deposits: 3, nsfs: 4, avgBalance: 1000, monthsBusiness: 6 }, restrictedIndustries: ["Auto Sales", "Bail-Bonds", "Collections", "Non-Profit", "Religious/Civic Organizations", "Travel Agencies", "Wholesale", "Brokers"] },
+      { name: "Edge", criteria: { personalCredit: 500, monthlyRevenue: 6000, deposits: 2, nsfs: 5, avgBalance: 600, monthsBusiness: 6 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales", "Auto Rentals", "Casino/ Gambling", "Trucking", "Transportation", "Brokers"] },
+      { name: "GFE", criteria: { personalCredit: 500, monthlyRevenue: 30000, deposits: 3, nsfs: 3, avgBalance: 1000, monthsBusiness: 12 }, restrictedIndustries: [] },
+      { name: "Legend", criteria: { personalCredit: 650, monthlyRevenue: 30000, deposits: 3, nsfs: 3, avgBalance: 1000, monthsBusiness: 36 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales", "Education", "Farming","Oil & Gas", "Gun Sales", "Law Firms", "Marijuana/CBD", "Non-Profit", "Pawn Shops", "Real Estate", "Brokers", "Religious/Civic Organizations", "Trucking", "Transportation"] },
+      { name: "Bitty", criteria: { personalCredit: 450, monthlyRevenue: 1000, deposits: 1, nsfs: 10, avgBalance: 100, monthsBusiness: 1 }, restrictedIndustries: ["Auto Sales"] },
+      { name: "Good Funding", criteria: { personalCredit: 600, monthlyRevenue: 5000, deposits: 4, nsfs: 3, avgBalance: 1200, monthsBusiness: 18 }, restrictedIndustries: [] },
+      { name: "Cashflo It", criteria: { personalCredit: 500, monthlyRevenue: 35000, deposits: 5, nsfs: 2, avgBalance: 600, monthsBusiness: 12 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales", "Casino/ Gambling", "Collections", "Construction", "Contractors", "Roofing", "Electrician", "Landscaping", "Farming", "Finance/Investment/Banks", "Gas Stations", "Insurance", "Law Firms", "Marijuana/CBD", "Real Estate", "Brokers", "Title Companies", "Trucking", "Transportation"] },
+      { name: "Capital Assist", criteria: { personalCredit: 500, monthlyRevenue: 75000, deposits: 3, nsfs: 6, avgBalance: 1000, monthsBusiness: 6 }, restrictedIndustries: ["Adult Entertainment", "Auto Sales", "Casino/ Gambling", "Collections", "Construction", "Contractors", "Farming", "Finance/Investment/Banks", "Gas Stations", "Insurance", "Law Firms", "Marijuana/CBD", "Real Estate", "Brokers", "Title Companies", "Trucking", "Transportation"] },
+      { name: "GreenBOX (Canada / Auto Sales ONLY)", criteria: { personalCredit: 500, monthlyRevenue: 10000, deposits: 2, nsfs: 7, avgBalance: 150, monthsBusiness: 5 }, restrictedIndustries: ["Bail-Bonds", "Collections", "Credit Repair", "Finance/Investment/Banks", "Marijuana/CBD", "Religious/Civic Organizations", "Trucking", "Transportation", "Real Estate", "Brokers"] },
+      { name: "Last Chance Funding", criteria: { personalCredit: 450, monthlyRevenue: 1000, deposits: 1, nsfs: 10, avgBalance: 500, monthsBusiness: 1 }, restrictedIndustries: ["Finance/Investment/Banks", "Medical/Healthcare"] }
+    ];
+
+    // Populate industry dropdown
+    const industrySet = new Set(['Other']);
+    lenders.forEach(lender => {
+      lender.restrictedIndustries.forEach(ind => industrySet.add(ind));
+    });
+
+    const industrySelect = document.getElementById('industry');
+    [...industrySet].sort().forEach(industry => {
+      const option = document.createElement('option');
+      option.value = industry;
+      option.textContent = industry;
+      industrySelect.appendChild(option);
+    });
+
+    function generateImprovementTips(eligibleCount, totalCount, input) {
+      if (eligibleCount > 0) return '';
+
+      const tips = [];
+      
+      // Analyze common issues
+      let creditIssues = 0;
+      let revenueIssues = 0;
+      let timeIssues = 0;
+      let industryIssues = 0;
+
+      lenders.forEach(lender => {
+        if (input.personalCredit < lender.criteria.personalCredit) creditIssues++;
+        if (input.monthlyRevenue < lender.criteria.monthlyRevenue) revenueIssues++;
+        if (input.monthsBusiness < lender.criteria.monthsBusiness) timeIssues++;
+        if (lender.restrictedIndustries.includes(input.industry)) industryIssues++;
+      });
+
+      if (creditIssues > totalCount * 0.5) {
+        tips.push('Consider working on improving your personal credit score');
+      }
+      if (revenueIssues > totalCount * 0.5) {
+        tips.push('Focus on increasing your monthly revenue');
+      }
+      if (timeIssues > totalCount * 0.5) {
+        tips.push('Some lenders require more time in business');
+      }
+      if (industryIssues > totalCount * 0.3) {
+        tips.push('Your industry may have limited options');
+      }
+
+      if (tips.length === 0) {
+        tips.push('Consider reviewing your banking relationships');
+        tips.push('Reduce NSF occurrences to improve eligibility');
+      }
+
+      return `
+        <div class="improvement-tips">
+          <h3>Ways to Improve Your Eligibility</h3>
+          <ul class="tips-list">
+            ${tips.map(tip => `<li>${tip}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    // Form submission handler
+    document.getElementById('calculatorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      // Add loading state
+      const submitBtn = form.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = '🌱 Analyzing...';
+      submitBtn.disabled = true;
+
+      const input = {
+        personalCredit: +form.personalCredit.value,
+        monthlyRevenue: +form.monthlyRevenue.value,
+        deposits: +form.deposits.value,
+        nsfs: +form.nsfs.value,
+        avgBalance: +form.avgBalance.value,
+        monthsBusiness: +form.monthsBusiness.value,
+        industry: form.industry.value
+      };
+
+      // Simulate processing delay
+      setTimeout(() => {
+        const resultsContent = document.getElementById('resultsContent');
+        
+        let eligibleCount = 0;
+        let totalCount = lenders.length;
+
+        // Calculate eligible lenders
+        lenders.forEach(lender => {
+          const industryBlocked = lender.restrictedIndustries?.some(ind => ind === input.industry);
+          const meetsCriteria =
+            input.personalCredit >= lender.criteria.personalCredit &&
+            input.monthlyRevenue >= lender.criteria.monthlyRevenue &&
+            input.deposits >= lender.criteria.deposits &&
+            input.nsfs <= lender.criteria.nsfs &&
+            input.avgBalance >= lender.criteria.avgBalance &&
+            input.monthsBusiness >= lender.criteria.monthsBusiness;
+
+          const eligible = meetsCriteria && !industryBlocked;
+          if (eligible) eligibleCount++;
+        });
+
+        // Create results display
+        let resultsHTML = '';
+        
+        if (eligibleCount > 0) {
+          // Show eligible results with sign up CTA
+          resultsHTML = `
+            <div class="eligibility-display eligible-results fade-in">
+              <span class="eligibility-icon">🎉</span>
+              <div class="eligibility-title">Great News!</div>
+              <div class="eligibility-subtitle">You're eligible for funding from</div>
+              <div class="lender-count">${eligibleCount}</div>
+              <div class="eligibility-subtitle">lender${eligibleCount > 1 ? 's' : ''}</div>
+              <button class="signup-button" onclick="handleSignUp()">
+                🌱 Sign Up Now to Begin Application Process
+              </button>
+            </div>
+            
+            <div class="stats-container">
+              <div class="stat-card">
+                <span class="stat-number">${eligibleCount}</span>
+                <span class="stat-label">Eligible Lenders</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">${totalCount}</span>
+                <span class="stat-label">Total Lenders</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">${Math.round((eligibleCount / totalCount) * 100)}%</span>
+                <span class="stat-label">Match Rate</span>
+              </div>
+            </div>
+          `;
+        } else {
+          // Show no eligible results with improvement tips
+          resultsHTML = `
+            <div class="eligibility-display no-eligible-results fade-in">
+              <span class="eligibility-icon">😔</span>
+              <div class="eligibility-title">No Matches Found</div>
+              <div class="eligibility-subtitle">You don't currently qualify for any of our lenders</div>
+              <div class="lender-count">0</div>
+              <div class="eligibility-subtitle">out of ${totalCount} lenders</div>
+            </div>
+            
+            <div class="stats-container">
+              <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Eligible Lenders</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">${totalCount}</span>
+                <span class="stat-label">Total Lenders</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">0%</span>
+                <span class="stat-label">Match Rate</span>
+              </div>
+            </div>
+            
+            ${generateImprovementTips(eligibleCount, totalCount, input)}
+          `;
+        }
+
+        resultsContent.innerHTML = resultsHTML;
+
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 1200);
+    });
+
+    // Sign up handler
+    function handleSignUp() {
+      alert('🌱 Welcome to Peapod Finance! You will be redirected to our secure application portal.');
+      // In a real application, you would redirect to the sign-up page:
+      // window.location.href = '/signup';
+    }
+
+    // Add input formatting for currency fields
+    const currencyInputs = ['monthlyRevenue', 'avgBalance'];
+    currencyInputs.forEach(id => {
+      const input = document.getElementById(id);
+      input.addEventListener('input', function(e) {
+        // Remove non-numeric characters except decimal point
+        let value = e.target.value.replace(/[^\d.]/g, '');
+        // Ensure only one decimal point
+        const parts = value.split('.');
+        if (parts.length > 2) {
+          value = parts[0] + '.' + parts.slice(1).join('');
+        }
+        e.target.value = value;
+      });
+    });
+
+    // Add some interactive feedback
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'translateY(-2px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body>
+</html>

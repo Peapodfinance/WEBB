@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - Partnership Opportunities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #8bc34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #8bc34a;
+        }
+
+        .cta-button {
+            background: #8bc34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #7bb239;
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: leafFloat 20s infinite linear;
+        }
+
+        .floating-leaf:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .floating-leaf:nth-child(2) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 8s;
+            animation-duration: 30s;
+        }
+
+        .floating-leaf:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 15s;
+            animation-duration: 22s;
+        }
+
+        @keyframes leafFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 50px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 60px 40px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8bc34a 0%, #7bb239 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(51, 51, 51, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .partnership-handshake {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Partnership Cards */
+        .partnerships-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .partnership-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .partnership-card:hover::before {
+            left: 100%;
+        }
+
+        .partnership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(139, 195, 74, 0.2);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8bc34a;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-size: 1.1rem;
+            color: rgba(51, 51, 51, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(139, 195, 74, 0.15);
+            transform: translateX(5px);
+        }
+
+        .benefit-icon {
+            color: #8bc34a;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .benefit-description {
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.7);
+            line-height: 1.4;
+        }
+
+        .signup-button {
+            width: 100%;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .signup-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 195, 74, 0.4);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+            margin-bottom: 80px;
+        }
+
+        .stats-title {
+            font-size: 2.5rem;
+            color: #8bc34a;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8bc34a;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: rgba(51, 51, 51, 0.8);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            color: #8bc34a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contact-description {
+            font-size: 1.2rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-button {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 195, 74, 0.5);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .partnerships-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .partnership-card {
+                padding: 30px 25px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .stats-section, .contact-section {
+                padding: 30px 25px;
+            }
+
+            .stats-title, .contact-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-leaf">🌿</div>
+        <div class="floating-leaf">🍃</div>
+        <div class="floating-leaf">🌱</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </div>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#partnerships" class="active">Partnerships</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#login" class="cta-button">Login</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="partnership-handshake">🤝</div>
+            <h1 class="hero-title">Partnership Opportunities</h1>
+            <p class="hero-subtitle">Grow Your Business While Helping Others Grow Theirs</p>
+            <p class="hero-description">
+                Join the Peapod Finance partnership ecosystem and unlock new revenue streams while providing valuable financing solutions to your clients. Our comprehensive platform offers tools, resources, and support to help you succeed.
+            </p>
+        </section>
+
+        <!-- Partnership Cards -->
+        <section class="partnerships-grid">
+            <!-- ISO Partnership -->
+            <div class="partnership-card">
+                <div class="card-header">
+                    <span class="card-icon">🏦</span>
+                    <h2 class="card-title">ISO Partnership</h2>
+                    <p class="card-subtitle">Independent Sales Organizations</p>
+                </div>
+
+                <ul class="benefits-list">
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🌐</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Dedicated Portal Access</div>
+                            <div class="benefit-description">Your own branded portal for managing client applications and tracking progress</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">📊</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Client Database Integration</div>
+                            <div class="benefit-description">Seamlessly import and manage your existing client database</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">💰</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Competitive Commission Structure</div>
+                            <div class="benefit-description">Industry-leading commission rates with performance bonuses</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">📈</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Real-Time Analytics</div>
+                            <div class="benefit-description">Track submissions, approvals, and earnings with detailed reporting</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🎯</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Marketing Support</div>
+                            <div class="benefit-description">Professional marketing materials and campaign support</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🔧</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">API Integration</div>
+                            <div class="benefit-description">Connect our platform directly to your existing systems</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button class="signup-button" onclick="signUpISO()">🌱 Sign Up as ISO</button>
+            </div>
+
+            <!-- Business Consultant Partnership -->
+            <div class="partnership-card">
+                <div class="card-header">
+                    <span class="card-icon">👔</span>
+                    <h2 class="card-title">Business Consultant</h2>
+                    <p class="card-subtitle">Financial Advisory Partners</p>
+                </div>
+
+                <ul class="benefits-list">
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🛠️</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Client Management Tools</div>
+                            <div class="benefit-description">Comprehensive dashboard to manage all your clients' financing needs</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">📋</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Financial Health Assessments</div>
+                            <div class="benefit-description">Detailed reports on client eligibility and improvement recommendations</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🎓</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Training & Certification</div>
+                            <div class="benefit-description">Become certified in business financing strategies and best practices</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">💡</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Advisory Resources</div>
+                            <div class="benefit-description">Access to lending experts and industry insights for your clients</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🔗</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">White-Label Solutions</div>
+                            <div class="benefit-description">Offer financing services under your own brand</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">💼</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Recurring Revenue</div>
+                            <div class="benefit-description">Build ongoing income streams through client success</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button class="signup-button" onclick="signUpConsultant()">🌱 Join as Consultant</button>
+            </div>
+
+            <!-- Referral Partner -->
+            <div class="partnership-card">
+                <div class="card-header">
+                    <span class="card-icon">🤝</span>
+                    <h2 class="card-title">Referral Partner</h2>
+                    <p class="card-subtitle">Professional Service Providers</p>
+                </div>
+
+                <ul class="benefits-list">
+                    <li class="benefit-item">
+                        <span class="benefit-icon">💸</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Generous Referral Fees</div>
+                            <div class="benefit-description">Earn substantial commissions for every successful referral</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">📱</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Simple Referral Process</div>
+                            <div class="benefit-description">Easy-to-use referral system with instant tracking</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🎯</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Perfect for CPAs, Lawyers & Coaches</div>
+                            <div class="benefit-description">Ideal for professionals who regularly advise businesses</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">⚡</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Fast Payment Processing</div>
+                            <div class="benefit-description">Quick commission payments upon successful funding</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button class="signup-button" onclick="signUpReferral()">🌱 Become a Referral Partner</button>
+            </div>
+
+            <!-- Affiliate Program -->
+            <div class="partnership-card">
+                <div class="card-header">
+                    <span class="card-icon">📢</span>
+                    <h2 class="card-title">Affiliate Program</h2>
+                    <p class="card-subtitle">Marketing & Content Partners</p>
+                </div>
+
+                <ul class="benefits-list">
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🔗</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Custom Tracking Links</div>
+                            <div class="benefit-description">Unique affiliate links with comprehensive performance tracking</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🎨</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Marketing Assets</div>
+                            <div class="benefit-description">Professional banners, content, and promotional materials</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">📈</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Tiered Commission Structure</div>
+                            <div class="benefit-description">Higher performance equals higher commission rates</div>
+                        </div>
+                    </li>
+                    <li class="benefit-item">
+                        <span class="benefit-icon">🎉</span>
+                        <div class="benefit-text">
+                            <div class="benefit-title">Performance Bonuses</div>
+                            <div class="benefit-description">Monthly and quarterly bonuses for top performers</div>
+                        </div>
+                    </li>
+                </ul>
+
+                <button class="signup-button" onclick="signUpAffiliate()">🌱 Join Affiliate Program</button>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <h2 class="stats-title">Partnership Success Metrics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Active Partners</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$25M+</span>
+                    <span class="stat-label">Partner Commissions Paid</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Partner Satisfaction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15,000+</span>
+                    <span class="stat-label">Successful Referrals</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 class="contact-title">Ready to Partner With Us?</h2>
+            <p class="contact-description">
+                Our partnership team is here to help you get started and maximize your success. Contact us today to learn more about joining the Peapod Finance partner network.
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span>1-800-PEAPOD-1</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span>partners@peapodfinance.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">💬</span>
+                    <span>Live Chat Available 9-5 EST</span>
+                </div>
+            </div>
+
+            <button class="contact-button" onclick="contactPartnershipTeam()">🌱 Contact Partnership Team</button>
+        </section>
+    </main>
+
+    <script>
+        // Partnership signup handlers
+        function signUpISO() {
+            alert('🏦 ISO Partnership Application\n\nYou will be redirected to our ISO partnership application. This includes verification of your business credentials and review of your client portfolio.');
+            // In real application: window.location.href = '/partnerships/iso/signup';
+        }
+
+        function signUpConsultant() {
+            alert('👔 Business Consultant Partnership\n\nYou will be redirected to our consultant onboarding process. This includes training modules and certification requirements.');
+            // In real application: window.location.href = '/partnerships/consultant/signup';
+        }
+
+        function signUpReferral() {
+            alert('🤝 Referral Partner Program\n\nYou will be redirected to our quick referral partner signup. Get started earning commissions today!');
+            // In real application: window.location.href = '/partnerships/referral/signup';
+        }
+
+        function signUpAffiliate() {
+            alert('📢 Affiliate Program Application\n\nYou will be redirected to our affiliate program signup. Perfect for marketers and content creators!');
+            // In real application: window.location.href = '/partnerships/affiliate/signup';
+        }
+
+        function contactPartnershipTeam() {
+            alert('💬 Contacting Partnership Team\n\nYou will be connected with our partnership specialists who can help you choose the best program for your needs.');
+            // In real application: window.location.href = '/contact/partnerships';
+        }
+
+        // Add smooth scrolling and interaction effects
+        document.querySelectorAll('.partnership-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach((stat, index) => {
+                        const finalValue = stat.textContent;
+                        stat.textContent = '0';
+                        
+                        setTimeout(() => {
+                            animateNumber(stat, finalValue);
+                        }, index * 200);
+                    });
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(document.querySelector('.stats-section'));
+
+        function animateNumber(element, target) {
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            // Extract numeric value
+            const numeric

@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - Grow Your Business Naturally</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(139, 195, 74, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #8bc34a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8bc34a;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: #8bc34a;
+        }
+
+        .header-signin {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .header-signin:hover {
+            background: rgba(139, 195, 74, 0.1);
+            border-color: rgba(139, 195, 74, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .header-cta:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 195, 74, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.08;
+            animation: float 25s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 10s;
+            animation-duration: 35s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 20s;
+            animation-duration: 28s;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 40%;
+            right: 25%;
+            animation-delay: 5s;
+            animation-duration: 32s;
+        }
+
+        .floating-element:nth-child(5) {
+            bottom: 60%;
+            left: 60%;
+            animation-delay: 15s;
+            animation-duration: 27s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.08;
+            }
+            25% {
+                transform: translateY(-30px) rotate(90deg);
+                opacity: 0.12;
+            }
+            50% {
+                transform: translateY(-15px) rotate(180deg);
+                opacity: 0.08;
+            }
+            75% {
+                transform: translateY(-25px) rotate(270deg);
+                opacity: 0.10;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 50px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(139, 195, 74, 0.1);
+            color: #8bc34a;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #2d5016 0%, #8bc34a 50%, #a8e063 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 20px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            box-shadow: 0 10px 30px rgba(139, 195, 74, 0.4);
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 195, 74, 0.5);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #8bc34a;
+            border: 2px solid #8bc34a;
+            box-shadow: 0 10px 30px rgba(139, 195, 74, 0.2);
+        }
+
+        .cta-secondary:hover {
+            background: #8bc34a;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 195, 74, 0.4);
+        }
+
+        .hero-visual {
+            margin-top: 40px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .growth-animation {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .seed {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #8b4513;
+            border-radius: 50%;
+            animation: seedGrow 6s infinite;
+        }
+
+        .plant-stem {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            background: linear-gradient(to top, #4a7c59, #8bc34a);
+            border-radius: 3px;
+            animation: stemGrow 6s infinite;
+            transform-origin: bottom;
+        }
+
+        .plant-leaves {
+            position: absolute;
+            animation: leavesGrow 6s infinite;
+        }
+
+        .leaf {
+            width: 25px;
+            height: 15px;
+            background: #8bc34a;
+            border-radius: 50% 10px;
+            position: absolute;
+        }
+
+        @keyframes seedGrow {
+            0%, 20% { opacity: 1; transform: translateX(-50%) scale(1); }
+            30%, 100% { opacity: 0; transform: translateX(-50%) scale(0); }
+        }
+
+        @keyframes stemGrow {
+            0%, 30% { height: 0; }
+            60%, 100% { height: 120px; }
+        }
+
+        @keyframes leavesGrow {
+            0%, 60% { opacity: 0; transform: scale(0); }
+            80%, 100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 50px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+            margin-bottom: 50px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #8bc34a;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(51, 51, 51, 0.8);
+            font-weight: 600;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(51, 51, 51, 0.7);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .step-card:hover::before {
+            left: 100%;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(139, 195, 74, 0.2);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            color: rgba(51, 51, 51, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 50px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.2);
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            color: rgba(51, 51, 51, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* TrustPilot Section */
+        .trustpilot-section {
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .trustpilot-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+        }
+
+        .trustpilot-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00b67a;
+            margin-bottom: 20px;
+        }
+
+        .trustpilot-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-stars {
+            color: #00b67a;
+            font-size: 2rem;
+        }
+
+        .rating-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .trustpilot-reviews {
+            color: rgba(51, 51, 51, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .final-cta-section {
+            padding: 120px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .final-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 60px 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 20px 50px rgba(139, 195, 74, 0.2);
+        }
+
+        .final-cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 20px;
+        }
+
+        .final-cta-subtitle {
+            font-size: 1.3rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .header div {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+
+            .header-signin, .header-cta {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+            }
+
+            .hero-section {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .stats-section, .how-it-works, .testimonials-section, .trustpilot-section, .final-cta-section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .final-cta-title {
+                font-size: 2.2rem;
+            }
+
+            .testimonials-grid, .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element">🌱</div>
+        <div class="floating-element">🌿</div>
+        <div class="floating-element">🍃</div>
+        <div class="floating-element">💰</div>
+        <div class="floating-element">📈</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#partnerships">Partnerships</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="#signin" class="header-signin" onclick="signIn()">Sign In</a>
+            <a href="#qualify" class="header-cta">Check Eligibility</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">🌱 Trusted by 25,000+ Growing Businesses</div>
+            
+            <h1 class="hero-title">Grow Your Business Naturally</h1>
+            
+            <p class="hero-subtitle">
+                Access funding from our network of trusted lenders. Simple applications, 
+                fast approvals, and financing solutions that grow with your business.
+            </p>
+            
+            <div class="cta-container">
+                <a href="#qualify" class="cta-primary" onclick="checkEligibility()">
+                    🌱 See If You Qualify
+                </a>
+                <a href="#signup" class="cta-secondary" onclick="signUp()">
+                    📝 Sign Up Now
+                </a>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="growth-animation">
+                    <div class="seed"></div>
+                    <div class="plant-stem"></div>
+                    <div class="plant-leaves">
+                        <div class="leaf" style="bottom: 80px; left: 140px; transform: rotate(-30deg);"></div>
+                        <div class="leaf" style="bottom: 90px; left: 160px; transform: rotate(25deg);"></div>
+                        <div class="leaf" style="bottom: 110px; left: 135px; transform: rotate(-20deg);"></div>
+                        <div class="leaf" style="bottom: 120px; left: 165px; transform: rotate(30deg);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2 class="stats-title">Trusted Results That Speak for Themselves</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" data-target="25000">0</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="50">$0M</span>
+                    <span class="stat-label">Funding Provided</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="98.5">0%</span>
+                    <span class="stat-label">Satisfaction Rate</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="72">0hrs</span>
+                    <span class="stat-label">Average Approval Time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="section-container">
+            <h2 class="section-title">How Peapod Works</h2>
+            <p class="section-subtitle">
+                Get funded in three simple steps. Our streamlined process makes business financing fast and transparent.
+            </p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Apply in Minutes</h3>
+                    <p class="step-description">
+                        Complete our simple application with basic business information. 
+                        No lengthy paperwork or complex requirements.
+                    </p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Receive Funding</h3>
+                    <p class="step-description">
+                        Choose your preferred offer and get funded fast. Most businesses 
+                        receive funding within 24-72 hours of approval.
+                    </p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Manage Your Finances All Through Peapod!</h3>
+                    <p class="step-description">
+                        Access your personalized dashboard to track payments, monitor cash flow, 
+                        apply for additional funding, and get financial insights to grow your business smarter.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <a href="#qualify" class="cta-primary" onclick="checkEligibility()">
+                    🚀 Start Your Application
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="section-container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-subtitle">
+                    Real stories from real businesses that have grown with Peapod Finance.
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "Peapod Finance helped us secure $75,000 in working capital when traditional banks turned us down. 
+                        The process was incredibly smooth and our account manager was there every step of the way."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Martinez</h4>
+                            <p>CEO, Verde Restaurant Group</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "As a contractor, cash flow is everything. Peapod's quick approval process meant I could take on bigger projects without worrying about upfront costs. Game changer for my business!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Mike Johnson</h4>
+                            <p>Owner, Johnson Construction LLC</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "The transparency and support from Peapod was outstanding. They found us three different funding options and helped us choose the best fit. Highly recommend!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LR</div>
+                        <div class="author-info">
+                            <h4>Lisa Rodriguez</h4>
+                            <p>CFO, TechStart Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TrustPilot Section -->
+    <section class="trustpilot-section">
+        <div class="trustpilot-container">
+            <div class="trustpilot-logo">⭐ Trustpilot</div>
+            <div class="trustpilot-rating">
+                <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+                <div class="rating-text">4.8 out of 5</div>
+            </div>
+            <p class="trustpilot-reviews">
+                Based on 2,847 reviews | "Excellent" rating
+            </p>
+            <p style="margin-top: 20px; color: rgba(51, 51, 51, 0.6); font-style: italic;">
+                "Peapod Finance consistently delivers on their promises. Fast, reliable, and genuinely cares about small business success."
+            </p>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="final-cta-container">
+            <h2 class="final-cta-title">Ready to Grow?</h2>
+            <p class="final-cta-subtitle">
+                Join thousands of businesses that have successfully grown with Peapod Finance. 
+                See how much funding you qualify for in under 60 seconds.
+            </p>
+            
+            <div class="cta-container">
+                <a href="#qualify" class="cta-primary" onclick="checkEligibility()">
+                    🌱 Check My Eligibility Now
+                </a>
+                <a href="#signup" class="cta-secondary" onclick="signUp()">
+                    📝 Create Free Account
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animate numbers when in view
+        const animateNumbers = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.getAttribute('data-target');
+                        animateNumber(target, finalValue);
+                        observer.unobserve(target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(stat => observer.observe(stat));
+        };
+
+        function animateNumber(element, target) {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                let current;
+                if (target.includes('M')) {
+                    current = Math.floor(progress * parseInt(target));
+                    element.textContent = ' + current + 'M+';
+                } else if (target.includes('%')) {
+                    current = (progress * parseFloat(target)).toFixed(1);
+                    element.textContent = current + '%';
+                } else if (target.includes('hrs')) {
+                    current = Math.floor(progress * parseInt(target));
+                    element.textContent = current + 'hrs';
+                } else {
+                    current = Math.floor(progress * parseInt(target));
+                    element.textContent = current.toLocaleString() + '+';
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+
+        // CTA handlers
+        function checkEligibility() {
+            alert('🌱 Eligibility Check\n\nYou will be redirected to our quick eligibility checker. Get results in under 60 seconds!');
+            // In real application: window.location.href = '/eligibility-check';
+        }
+
+        function signUp() {
+            alert('📝 Sign Up\n\nYou will be redirected to create your free Peapod Finance account and access our lending marketplace.');
+            // In real application: window.location.href = '/signup';
+        }
+
+        function signIn() {
+            alert('🔐 Sign In\n\nYou will be redirected to the secure login page for existing Peapod Finance users.');
+            // In real application: window.location.href = '/login';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations to cards
+        const addScrollAnimations = () => {
+            const cards = document.querySelectorAll('.step-card, .testimonial-card, .stat-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        };
+
+        // Enhanced floating animation
+        const enhanceFloatingElements = () => {
+            const elements = document.querySelectorAll('.floating-element');
+            elements.forEach((element, index) => {
+                element.addEventListener('mouseenter', () => {
+                    element.style.animationPlayState = 'paused';
+                    element.style.transform = 'scale(1.2)';
+                    element.style.opacity = '0.3';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    element.style.animationPlayState = 'running';
+                    element.style.transform = 'scale(1)';
+                    element.style.opacity = '0.08';
+                });
+            });
+        };
+
+        // Add interactive hover effects
+        const addInteractiveEffects = () => {
+            // CTA button ripple effect
+            document.querySelectorAll('.cta-primary, .cta-secondary').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.pointerEvents = 'none';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        };
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize all animations and effects
+        document.addEventListener('DOMContentLoaded', function() {
+            animateNumbers();
+            addScrollAnimations();
+            enhanceFloatingElements();
+            addInteractiveEffects();
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

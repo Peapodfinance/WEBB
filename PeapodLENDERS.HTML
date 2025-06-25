@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - Lender Partnership Opportunities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #8bc34a;
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .header-cta:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge {
+            background: rgba(139, 195, 74, 0.1);
+            color: #8bc34a;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #8bc34a 0%, #7bb239 50%, #689f38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8bc34a;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: rgba(51, 51, 51, 0.8);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Value Proposition */
+        .value-section {
+            padding: 120px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(51, 51, 51, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .value-card:hover::before {
+            left: 100%;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(139, 195, 74, 0.2);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.3);
+        }
+
+        .value-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #8bc34a;
+            margin-bottom: 15px;
+        }
+
+        .value-description {
+            color: rgba(51, 51, 51, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .value-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 8px;
+        }
+
+        .feature-icon {
+            color: #8bc34a;
+            font-weight: bold;
+        }
+
+        .feature-text {
+            color: rgba(51, 51, 51, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Technology Section */
+        .tech-section {
+            padding: 100px 50px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .tech-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 25px;
+        }
+
+        .tech-description {
+            font-size: 1.2rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .tech-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .tech-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .tech-text h4 {
+            font-weight: 600;
+            color: #8bc34a;
+            margin-bottom: 5px;
+        }
+
+        .tech-text p {
+            color: rgba(51, 51, 51, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .tech-visual {
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .tech-diagram {
+            font-size: 4rem;
+            color: #8bc34a;
+            margin-bottom: 20px;
+        }
+
+        .api-button {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .api-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8bc34a;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            color: rgba(51, 51, 51, 0.8);
+            line-height: 1.5;
+        }
+
+        /* Partner Testimonials */
+        .testimonials-section {
+            padding: 100px 50px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(139, 195, 74, 0.2);
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            color: rgba(51, 51, 51, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 50px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cta-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 60px 50px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 20px 50px rgba(139, 195, 74, 0.2);
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #8bc34a;
+            border: 2px solid #8bc34a;
+        }
+
+        .cta-button.secondary:hover {
+            background: #8bc34a;
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .hero-section {
+                padding: 80px 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .value-section, .tech-section, .process-section, .testimonials-section, .cta-section {
+                padding: 80px 20px;
+            }
+
+            .tech-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#for-lenders" class="active">For Lenders</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#apply" class="header-cta">Apply to Partner</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-badge">🏦 Trusted by Leading Lenders</div>
+            <h1 class="hero-title">Partner with Peapod Finance</h1>
+            <p class="hero-subtitle">
+                Join our growing network of lending partners and access a premium pipeline of qualified 
+                business borrowers. Our technology-driven platform delivers high-quality leads with 
+                superior conversion rates and streamlined processing.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-number">25,000+</span>
+                    <span class="stat-label">Active Borrowers</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$50M+</span>
+                    <span class="stat-label">Funded Monthly</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">Application Quality Score</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Current Partners</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="value-section">
+            <div class="section-header">
+                <h2 class="section-title">Why Lenders Choose Peapod</h2>
+                <p class="section-subtitle">
+                    Our platform delivers measurable value through technology, quality, and partnership
+                </p>
+            </div>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3 class="value-title">Premium Lead Quality</h3>
+                    <p class="value-description">
+                        Our advanced pre-qualification process ensures you receive only the highest-quality 
+                        leads that match your specific lending criteria and risk parameters.
+                    </p>
+                    <ul class="value-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">85% average application quality score</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Pre-verified business and financial information</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Industry and credit score filtering</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Geographic and loan amount matching</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📈</div>
+                    <h3 class="value-title">Increased Conversion Rates</h3>
+                    <p class="value-description">
+                        Our intelligent matching algorithm and borrower education process result in 
+                        significantly higher conversion rates compared to traditional lead sources.
+                    </p>
+                    <ul class="value-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">40% higher conversion vs industry average</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Educated borrowers ready to move forward</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Reduced time-to-funding cycles</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Lower abandonment rates</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔧</div>
+                    <h3 class="value-title">Seamless Integration</h3>
+                    <p class="value-description">
+                        Connect your existing systems with our robust API or use our white-label portal 
+                        to maintain your brand throughout the borrower experience.
+                    </p>
+                    <ul class="value-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">RESTful API with comprehensive documentation</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">White-label portal options</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Real-time application status updates</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Automated document collection</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <h3 class="value-title">Revenue Growth</h3>
+                    <p class="value-description">
+                        Scale your lending business with access to our growing borrower network and 
+                        benefit from our performance-based partnership model.
+                    </p>
+                    <ul class="value-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Performance-based fee structure</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Volume bonuses for high performers</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Exclusive access to premium borrowers</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Predictable deal flow</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Integration -->
+        <section class="tech-section">
+            <div class="tech-container">
+                <div class="tech-content">
+                    <h2>Built for Integration</h2>
+                    <p class="tech-description">
+                        Our modern API and integration tools are designed to work seamlessly with your 
+                        existing lending infrastructure, reducing implementation time and ongoing maintenance.
+                    </p>
+                    
+                    <ul class="tech-features">
+                        <li class="tech-feature">
+                            <div class="tech-icon">🔌</div>
+                            <div class="tech-text">
+                                <h4>RESTful API</h4>
+                                <p>Complete API with webhooks, real-time updates, and comprehensive documentation</p>
+                            </div>
+                        </li>
+                        <li class="tech-feature">
+                            <div class="tech-icon">🔒</div>
+                            <div class="tech-text">
+                                <h4>Bank-Level Security</h4>
+                                <p>SOC 2 compliant with 256-bit encryption and multi-factor authentication</p>
+                            </div>
+                        </li>
+                        <li class="tech-feature">
+                            <div class="tech-icon">📊</div>
+                            <div class="tech-text">
+                                <h4>Real-Time Analytics</h4>
+                                <p>Comprehensive reporting dashboard with conversion metrics and performance data</p>
+                            </div>
+                        </li>
+                        <li class="tech-feature">
+                            <div class="tech-icon">🎨</div>
+                            <div class="tech-text">
+                                <h4>White-Label Options</h4>
+                                <p>Customize the borrower experience with your branding and messaging</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#api" class="api-button" onclick="viewAPIDocs()">View API Documentation</a>
+                </div>
+
+                <div class="tech-visual">
+                    <div class="tech-diagram">🔗</div>
+                    <h3>Seamless Integration</h3>
+                    <p>Connect in minutes, not months. Our API is designed for quick deployment and easy maintenance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership Process -->
+        <section class="process-section">
+            <div class="section-header">
+                <h2 class="section-title">Partnership Process</h2>
+                <p class="section-subtitle">
+                    Join our network in four simple steps and start receiving qualified leads within days
+                </p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Application & Review</h3>
+                    <p class="step-description">
+                        Submit your partnership application with licensing information, lending criteria, 
+                        and business details. Our team reviews applications within 48 hours.
+                    </p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Due Diligence & Approval</h3>
+                    <p class="step-description">
+                        We conduct thorough due diligence including license verification, financial review, 
+                        and compliance check to ensure partnership quality.
+                    </p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Integration & Setup</h3>
+                    <p class="step-description">
+                        Our technical team works with you to configure API access, set up lead routing, 
+                        and customize the borrower experience to match your requirements.
+                    </p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Launch & Optimization</h3>
+                    <p class="step-description">
+                        Begin receiving qualified leads immediately. Our team provides ongoing support 
+                        and optimization to maximize your conversion rates and portfolio growth.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Testimonials -->
+        <section class="testimonials-section">
+            <div class="section-header">
+                <h2 class="section-title">What Our Partners Say</h2>
+                <p class="section-subtitle">
+                    Hear from lending partners who have grown their business through Peapod Finance
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "Peapod has transformed our lead generation. The quality of borrowers is exceptional, 
+                        and their pre-qualification process saves us countless hours. Our conversion rate 
+                        increased by 45% in the first quarter."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RC</div>
+                        <div class="author-info">
+                            <h4>Robert Chen</h4>
+                            <p>VP of Lending, Capital Growth Partners</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "The API integration was seamless, and their technical support team is outstanding. 
+                        We're now processing 3x more applications with the same team size. The ROI has been incredible."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <h4>Jennifer Martinez</h4>
+                            <p>CTO, Progressive Business Finance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-quote">
+                        "Peapod's borrower education process means we receive applications from businesses 
+                        that truly understand our products. The time-to-close has decreased significantly."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DT</div>
+                        <div class="author-info">
+                            <h4>David Thompson</h4>
+                            <p>CEO, Swift Capital Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2 class="cta-title">Ready to Partner with Peapod?</h2>
+                <p class="cta-subtitle">
+                    Join leading lenders who are growing their business through our premium borrower network. 
+                    Start your partnership application today and begin receiving qualified leads within days.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="#apply" class="cta-button" onclick="startPartnerApplication()">
+                        🌱 Apply to Partner
+                    </a>
+                    <a href="#demo" class="cta-button secondary" onclick="requestDemo()">
+                        📊 Request Demo
+                    </a>
+                    <a href="#speak" class="cta-button secondary" onclick="speakWithTeam()">
+                        📞 Speak with Our Team
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // CTA Button Handlers
+        function startPartnerApplication() {
+            alert('🏦 Partnership Application\n\nYou will be redirected to our secure lender partnership application portal. Our team will review your submission within 48 hours.');
+            // In real application: window.location.href = '/lender-application';
+        }
+
+        function requestDemo() {
+            alert('📊 Platform Demo\n\nYou will be redirected to schedule a personalized demo of our lender platform and integration capabilities.');
+            // In real application: window.location.href = '/lender-demo';
+        }
+
+        function speakWithTeam() {
+            alert('📞 Partnership Team\n\nYou will be connected with our business development team to discuss partnership opportunities and answer your questions.');
+            // In real application: window.location.href = '/lender-consultation';
+        }
+
+        function viewAPIDocs() {
+            alert('📚 API Documentation\n\nYou will be redirected to our comprehensive API documentation and integration guides.');
+            // In real application: window.location.href = '/api-docs';
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe value cards and other elements
+        document.querySelectorAll('.value-card, .testimonial-card, .process-step').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(element);
+        });
+
+        // Animate numbers when in view
+        const animateNumbers = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        animateNumber(target, finalValue);
+                        statsObserver.unobserve(target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(stat => statsObserver.observe(stat));
+        };
+
+        function animateNumber(element, target) {
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                let current;
+                if (target === '25,000+') {
+                    current = Math.floor(progress * 25000);
+                    element.textContent = current.toLocaleString() + '+';
+                } else if (target === '$50M+') {
+                    current = Math.floor(progress * 50);
+                    element.textContent = ' + current + 'M+';
+                } else if (target === '85%') {
+                    current = Math.floor(progress * 85);
+                    element.textContent = current + '%';
+                } else if (target === '20+') {
+                    current = Math.floor(progress * 20);
+                    element.textContent = current + '+';
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            animateNumbers();
+        });
+
+        // Add interactive hover effects for value cards
+        document.querySelectorAll('.value-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add progress tracking for long-form content
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            // Create progress bar if it doesn't exist
+            if (!document.getElementById('scroll-progress')) {
+                const progressBar = document.createElement('div');
+                progressBar.id = 'scroll-progress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    left: 0;
+                    width: ${scrollPercent}%;
+                    height: 3px;
+                    background: linear-gradient(90deg, #8bc34a, #7bb239);
+                    z-index: 1001;
+                    transition: width 0.1s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Add form validation for future partnership application
+        function validatePartnershipForm(formData) {
+            const required = ['companyName', 'licenseNumber', 'contactEmail', 'lendingFocus'];
+            const missing = required.filter(field => !formData[field]);
+            
+            if (missing.length > 0) {
+                alert(`Please complete the following required fields: ${missing.join(', ')}`);
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Analytics tracking for partner interest
+        function trackPartnerInterest(action) {
+            // In a real application, this would send analytics data
+            console.log(`Partner interest tracked: ${action}`);
+        }
+
+        // Track CTA clicks
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                trackPartnerInterest(action);
+            });
+        });
+    </script>
+</body>
+</html>

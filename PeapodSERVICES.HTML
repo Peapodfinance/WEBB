@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - Our Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #8bc34a;
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .header-cta:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.08;
+            animation: leafFloat 25s infinite linear;
+        }
+
+        .floating-leaf:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .floating-leaf:nth-child(2) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 8s;
+            animation-duration: 35s;
+        }
+
+        .floating-leaf:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 15s;
+            animation-duration: 28s;
+        }
+
+        @keyframes leafFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.08;
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+                opacity: 0.12;
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+                opacity: 0.08;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 50px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8bc34a 0%, #7bb239 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-card {
+            position: absolute;
+            width: 450px;
+            height: 650px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 45px;
+            box-shadow: 0 20px 50px rgba(139, 195, 74, 0.2);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card.active {
+            z-index: 100;
+            transform: translate(-50%, -50%) translateX(0) translateY(0) scale(1) rotateY(0deg);
+            opacity: 1;
+        }
+
+        .service-card.next {
+            z-index: 50;
+            transform: translate(-50%, -50%) translateX(220px) translateY(-30px) scale(0.85) rotateY(-15deg);
+            opacity: 0.7;
+        }
+
+        .service-card.prev {
+            z-index: 50;
+            transform: translate(-50%, -50%) translateX(-220px) translateY(-30px) scale(0.85) rotateY(15deg);
+            opacity: 0.7;
+        }
+
+        .service-card.hidden {
+            z-index: 10;
+            transform: translate(-50%, -50%) translateX(0) translateY(-80px) scale(0.7) rotateY(0deg);
+            opacity: 0.3;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            color: rgba(51, 51, 51, 0.8);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 8px;
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(139, 195, 74, 0.15);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            color: #8bc34a;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            color: rgba(51, 51, 51, 0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .service-cta {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .service-cta:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 195, 74, 0.4);
+        }
+
+        /* Navigation Dots */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(139, 195, 74, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #8bc34a;
+            transform: scale(1.3);
+        }
+
+        .nav-dot:hover {
+            background: #8bc34a;
+            transform: scale(1.1);
+        }
+
+        /* Navigation Arrows */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #8bc34a;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #8bc34a;
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
+
+        .carousel-arrow:hover {
+            background: #8bc34a;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev-arrow {
+            left: -120px;
+        }
+
+        .carousel-arrow.next-arrow {
+            right: -120px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .carousel-container {
+                height: 700px;
+            }
+
+            .service-card {
+                width: 380px;
+                height: 600px;
+                padding: 35px;
+            }
+
+            .service-card.next,
+            .service-card.prev {
+                transform: translate(-50%, -50%) translateX(0) translateY(100px) scale(0.8) rotateY(0deg);
+            }
+
+            .carousel-arrow {
+                display: none;
+            }
+
+            .service-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card {
+                width: 340px;
+                height: 580px;
+                padding: 30px;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .service-title {
+                font-size: 1.5rem;
+            }
+
+            .carousel-container {
+                height: 650px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-leaf">🌿</div>
+        <div class="floating-leaf">🍃</div>
+        <div class="floating-leaf">🌱</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services" class="active">Services</a>
+            <a href="#partnerships">Partnerships</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#qualify" class="header-cta">Get Started</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Our Financial Services</h1>
+            <p class="hero-subtitle">
+                Comprehensive financing solutions designed to help your business grow at every stage. 
+                Click through our services to discover the perfect fit for your needs.
+            </p>
+        </section>
+
+        <!-- Services Carousel -->
+        <section class="carousel-container">
+            <div class="carousel-wrapper">
+                <!-- Card 1: Line of Credit -->
+                <div class="service-card active" data-index="0">
+                    <div class="service-icon">💳</div>
+                    <h3 class="service-title">Line of Credit</h3>
+                    <p class="service-description">
+                        Flexible access to funds when you need them. Draw what you need, pay interest only on what you use.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Access up to $500,000 in flexible funding</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Pay interest only on funds used</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Revolving credit that replenishes as you pay</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Perfect for managing cash flow gaps</span>
+                        </li>
+                    </ul>
+                    <button class="service-cta" onclick="learnMore('line-of-credit')">Learn More</button>
+                </div>
+
+                <!-- Card 2: Term Loan -->
+                <div class="service-card next" data-index="1">
+                    <div class="service-icon">🏦</div>
+                    <h3 class="service-title">Term Loan</h3>
+                    <p class="service-description">
+                        Traditional business loans with fixed rates and predictable monthly payments for major investments.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Loan amounts from $10,000 to $2,000,000</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Fixed interest rates and payment terms</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Terms from 6 months to 10 years</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Ideal for expansion and major purchases</span>
+                        </li>
+                    </ul>
+                    <button class="service-cta" onclick="learnMore('term-loan')">Learn More</button>
+                </div>
+
+                <!-- Card 3: Loan Management Portal -->
+                <div class="service-card hidden" data-index="2">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Loan Management Portal</h3>
+                    <p class="service-description">
+                        Your comprehensive dashboard to track payments, monitor progress, and manage all your financing in one place.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Real-time payment tracking and history</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Automated payment scheduling</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Financial insights and analytics</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Document storage and access</span>
+                        </li>
+                    </ul>
+                    <button class="service-cta" onclick="learnMore('portal')">Learn More</button>
+                </div>
+
+                <!-- Card 4: Equipment Finance -->
+                <div class="service-card prev" data-index="3">
+                    <div class="service-icon">🚛</div>
+                    <h3 class="service-title">Equipment Finance</h3>
+                    <p class="service-description">
+                        Specialized financing for business equipment and machinery with the equipment serving as collateral.
+                    </p>
+                    <ul class="service-features">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Finance up to 100% of equipment value</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Competitive rates with equipment as collateral</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">New and used equipment eligible</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span class="feature-text">Fast approval and funding process</span>
+                        </li>
+                    </ul>
+                    <button class="service-cta" onclick="learnMore('equipment-finance')">Learn More</button>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <div class="carousel-arrow prev-arrow" onclick="previousCard()">‹</div>
+                <div class="carousel-arrow next-arrow" onclick="nextCard()">›</div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="carousel-nav">
+                <div class="nav-dot active" onclick="goToCard(0)"></div>
+                <div class="nav-dot" onclick="goToCard(1)"></div>
+                <div class="nav-dot" onclick="goToCard(2)"></div>
+                <div class="nav-dot" onclick="goToCard(3)"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentCard = 0;
+        const totalCards = 4;
+        const cards = document.querySelectorAll('.service-card');
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'next', 'prev', 'hidden');
+                
+                if (index === currentCard) {
+                    card.classList.add('active');
+                } else if (index === (currentCard + 1) % totalCards) {
+                    card.classList.add('next');
+                } else if (index === (currentCard - 1 + totalCards) % totalCards) {
+                    card.classList.add('prev');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Update navigation dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCard);
+            });
+        }
+
+        function nextCard() {
+            currentCard = (currentCard + 1) % totalCards;
+            updateCarousel();
+        }
+
+        function previousCard() {
+            currentCard = (currentCard - 1 + totalCards) % totalCards;
+            updateCarousel();
+        }
+
+        function goToCard(index) {
+            currentCard = index;
+            updateCarousel();
+        }
+
+        function learnMore(service) {
+            const serviceNames = {
+                'line-of-credit': 'Line of Credit',
+                'term-loan': 'Term Loan',
+                'portal': 'Loan Management Portal',
+                'equipment-finance': 'Equipment Finance'
+            };
+            
+            alert(`🌱 ${serviceNames[service]}\n\nYou will be redirected to learn more about our ${serviceNames[service].toLowerCase()} options and start your application.`);
+            // In real application: window.location.href = `/services/${service}`;
+        }
+
+        // Auto-rotate carousel (optional)
+        let autoRotate = setInterval(() => {
+            nextCard();
+        }, 5000);
+
+        // Pause auto-rotate on hover
+        document.querySelector('.carousel-container').addEventListener('mouseenter', () => {
+            clearInterval(autoRotate);
+        });
+
+        document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
+            autoRotate = setInterval(() => {
+                nextCard();
+            }, 5000);
+        });
+
+        // Click on cards to navigate
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                if (index !== currentCard) {
+                    goToCard(index);
+                }
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                previousCard();
+            } else if (e.key === 'ArrowRight') {
+                nextCard();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        document.querySelector('.carousel-container').addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (startX - endX > threshold) {
+                nextCard();
+            } else if (endX - startX > threshold) {
+                previousCard();
+            }
+        }
+    </script>
+</body>
+</html>

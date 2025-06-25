@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - How It Works</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #8bc34a 0%, #c8d5a0 30%, #e8d5c4 70%, #f5f0e8 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(139, 195, 74, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: white;
+        }
+
+        .header-cta {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .header-cta:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        /* Process Steps */
+        .process-section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(51, 51, 51, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .step-container {
+            margin-bottom: 120px;
+            position: relative;
+        }
+
+        .step-container:nth-child(even) .step-content {
+            flex-direction: row-reverse;
+        }
+
+        .step-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.15);
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .step-visual {
+            flex: 0 0 400px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(139, 195, 74, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,20 Q50,10 80,20 Q90,50 80,80 Q50,90 20,80 Q10,50 20,20 Z' fill='rgba(139,195,74,0.1)'/%3E%3C/svg%3E") center/cover;
+            opacity: 0.3;
+        }
+
+        .step-icon {
+            font-size: 4rem;
+            color: #8bc34a;
+            z-index: 2;
+            position: relative;
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .step-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2d5016;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .step-description {
+            font-size: 1.2rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .step-details {
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .detail-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+        }
+
+        .detail-icon {
+            color: #8bc34a;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .detail-text {
+            color: rgba(51, 51, 51, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .time-estimate {
+            background: rgba(139, 195, 74, 0.2);
+            color: #2d5016;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* FAQ Section within steps */
+        .step-faq {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .faq-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: rgba(139, 195, 74, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2d5016;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(139, 195, 74, 0.15);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: rgba(51, 51, 51, 0.8);
+        }
+
+        .faq-answer.active {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            margin: 80px 50px;
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.15);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #8bc34a;
+            border: 2px solid #8bc34a;
+        }
+
+        .cta-button.secondary:hover {
+            background: #8bc34a;
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .hero-section {
+                padding: 60px 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .process-section {
+                padding: 60px 20px;
+            }
+
+            .step-content {
+                flex-direction: column !important;
+                gap: 40px;
+                padding: 40px 25px;
+            }
+
+            .step-container:nth-child(even) .step-content {
+                flex-direction: column !important;
+            }
+
+            .step-visual {
+                flex: none;
+                width: 100%;
+                height: 200px;
+            }
+
+            .step-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#how-it-works" class="active">How It Works</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#qualify" class="header-cta">Get Started</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">How Peapod Finance Works</h1>
+            <p class="hero-subtitle">
+                A complete, transparent guide to getting business funding through our platform. 
+                From your first application to ongoing loan management, we're with you every step of the way.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">24-48hrs</span>
+                    <span class="stat-label">Typical Approval Time</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Lending Partners</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98.5%</span>
+                    <span class="stat-label">Customer Satisfaction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$1K-$2M</span>
+                    <span class="stat-label">Funding Range</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Steps -->
+        <section class="process-section">
+            <div class="section-header">
+                <h2 class="section-title">Your Complete Journey</h2>
+                <p class="section-subtitle">
+                    Follow this comprehensive guide to understand every aspect of the funding process
+                </p>
+            </div>
+
+            <!-- Step 1: Preparation -->
+            <div class="step-container">
+                <div class="step-content">
+                    <div class="step-visual">
+                        <div class="step-icon">📋</div>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Prepare Your Application</h3>
+                        <p class="step-description">
+                            The foundation of a successful funding application is proper preparation. While our process is streamlined, 
+                            having the right documents and information ready will ensure the fastest possible approval.
+                        </p>
+
+                        <div class="step-details">
+                            <div class="detail-title">📄 Required Documents</div>
+                            <ul class="detail-list">
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Bank Statements:</strong> Last 3 months of business banking activity</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Government ID:</strong> Driver's license or passport for business owner</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Business Registration:</strong> Articles of incorporation or business license</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Tax Returns:</strong> Last 2 years of business tax returns (if available)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="step-details">
+                            <div class="detail-title">💡 Pro Tips for Success</div>
+                            <ul class="detail-list">
+                                <li class="detail-item">
+                                    <span class="detail-icon">💡</span>
+                                    <span class="detail-text">Ensure your bank statements show consistent deposit activity</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">💡</span>
+                                    <span class="detail-text">Have your business plan ready to show how you'll use the funds</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">💡</span>
+                                    <span class="detail-text">Check your personal and business credit scores beforehand</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">💡</span>
+                                    <span class="detail-text">Organize documents digitally for faster upload</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="time-estimate">⏱️ Preparation Time: 15-30 minutes</div>
+
+                        <div class="step-faq">
+                            <div class="faq-title">❓ Common Questions</div>
+                            <div class="faq-item">
+                                <div class="faq-question" onclick="toggleFaq(this)">
+                                    What if I don't have all the documents?
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    You can start your application with basic information and upload documents later. Our team will guide you through any missing items and suggest alternatives when possible.
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question" onclick="toggleFaq(this)">
+                                    How recent do bank statements need to be?
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Bank statements should be from the most recent 3 months. We need current information to assess your business's financial health accurately.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Application -->
+            <div class="step-container">
+                <div class="step-content">
+                    <div class="step-visual">
+                        <div class="step-icon">💻</div>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Submit Your Application</h3>
+                        <p class="step-description">
+                            Our streamlined application process takes just minutes to complete. We've designed it to be 
+                            comprehensive yet simple, gathering all the information our lending partners need to make 
+                            informed decisions about your funding request.
+                        </p>
+
+                        <div class="step-details">
+                            <div class="detail-title">📝 Application Sections</div>
+                            <ul class="detail-list">
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Personal Information:</strong> Your details as the business owner</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Business Details:</strong> Company information, industry, time in business</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Financial Information:</strong> Revenue, expenses, banking relationships</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Funding Request:</strong> Amount needed and intended use of funds</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="step-details">
+                            <div class="detail-title">🔒 Security & Privacy</div>
+                            <ul class="detail-list">
+                                <li class="detail-item">
+                                    <span class="detail-icon">🔒</span>
+                                    <span class="detail-text">256-bit SSL encryption protects all your data</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">🔒</span>
+                                    <span class="detail-text">Bank-level security with SOC 2 compliance</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">🔒</span>
+                                    <span class="detail-text">Your information is never sold to third parties</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">🔒</span>
+                                    <span class="detail-text">Application can be saved and completed later</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="time-estimate">⏱️ Application Time: 10-15 minutes</div>
+
+                        <div class="step-faq">
+                            <div class="faq-title">❓ Common Questions</div>
+                            <div class="faq-item">
+                                <div class="faq-question" onclick="toggleFaq(this)">
+                                    Can I save my application and finish later?
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Yes! Your application automatically saves as you progress. You can log back in anytime to continue where you left off.
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question" onclick="toggleFaq(this)">
+                                    What happens to my information?
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Your information is shared only with pre-qualified lending partners who can potentially fund your request. We never sell your data to third parties.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Review & Matching -->
+            <div class="step-container">
+                <div class="step-content">
+                    <div class="step-visual">
+                        <div class="step-icon">🎯</div>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Smart Matching & Review</h3>
+                        <p class="step-description">
+                            Once submitted, our advanced algorithm immediately begins matching your business profile with 
+                            our network of over 20 lending partners. Meanwhile, our underwriting team reviews your 
+                            application to ensure accuracy and completeness.
+                        </p>
+
+                        <div class="step-details">
+                            <div class="detail-title">🤖 Intelligent Matching Process</div>
+                            <ul class="detail-list">
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Industry Matching:</strong> Partners experienced with your business type</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Credit Profile:</strong> Lenders that work with your credit range</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Funding Amount:</strong> Partners who can meet your capital needs</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">✓</span>
+                                    <span class="detail-text"><strong>Geographic Focus:</strong> Lenders active in your region</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="step-details">
+                            <div class="detail-title">👥 Human Review Process</div>
+                            <ul class="detail-list">
+                                <li class="detail-item">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-text">Experienced underwriters review every application</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-text">Document verification and quality check</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-text">Additional document requests if needed</span>
+                                </li>
+                                <li class="detail-item">
+                                    <span class="detail-icon">👥</span>
+                                    <span class="detail-text">Direct communication for any questions</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="time-estimate">⏱️ Review Time: 2-24 hours</div>
+
+                        <div class="step-faq">
+                            <div class="faq-title">❓ Common Questions</div>
+                            <div class="faq-item">
+                                <div class="faq-question" onclick="toggleFaq(this)">
+                                    How many lenders will see my application?
+                                    <span>+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    Typically 3-7 pre-qualified lenders who are most likely to approve your request. We don't spam your application to everyone.
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question" onclick="toggleFaq(this)">
+                                    Will this affect my credit score?
+                                    <span>+</span>
+                                </div>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #8bc34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #8bc34a;
+        }
+
+        .cta-button {
+            background: #8bc34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #7bb239;
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-coin {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-coin::before {
+            content: '$';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #b8860b;
+        }
+
+        .floating-coin:nth-child(1) {
+            top: 10%;
+            right: 15%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .floating-coin:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 8s;
+            animation-duration: 30s;
+        }
+
+        .floating-coin:nth-child(3) {
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 15s;
+            animation-duration: 22s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(15px) rotate(240deg);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 50px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #8bc34a 0%, #a8e063 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .hero-highlight {
+            background: rgba(139, 195, 74, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #8bc34a;
+        }
+
+        .hero-highlight h3 {
+            color: #8bc34a;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Beanstalk Animation */
+        .beanstalk-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .beanstalk {
+            width: 8px;
+            background: linear-gradient(to top, #4a7c59, #8bc34a);
+            border-radius: 4px;
+            position: relative;
+            animation: growStalk 3s ease-out forwards;
+            transform-origin: bottom;
+            height: 0;
+        }
+
+        .beanstalk::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: -15px;
+            width: 30px;
+            height: 20px;
+            background: #2d4a2d;
+            border-radius: 50%;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 25px;
+            height: 15px;
+            background: #8bc34a;
+            border-radius: 50% 0;
+            opacity: 0;
+            animation: growLeaf 0.5s ease-out forwards;
+        }
+
+        .leaf:nth-child(1) {
+            left: -20px;
+            top: 80%;
+            transform: rotate(-45deg);
+            animation-delay: 1.5s;
+        }
+
+        .leaf:nth-child(2) {
+            right: -20px;
+            top: 60%;
+            transform: rotate(45deg);
+            animation-delay: 2s;
+        }
+
+        .leaf:nth-child(3) {
+            left: -25px;
+            top: 40%;
+            transform: rotate(-35deg);
+            animation-delay: 2.5s;
+        }
+
+        .leaf:nth-child(4) {
+            right: -25px;
+            top: 20%;
+            transform: rotate(35deg);
+            animation-delay: 3s;
+        }
+
+        @keyframes growStalk {
+            0% {
+                height: 0;
+            }
+            100% {
+                height: 400px;
+            }
+        }
+
+        @keyframes growLeaf {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(var(--rotation, 0deg));
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(var(--rotation, 0deg));
+            }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 120px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(139, 195, 74, 0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(51, 51, 51, 0.8);
+            font-weight: 500;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.6);
+            margin-top: 10px;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 8px 32px rgba(139, 195, 74, 0.1);
+        }
+
+        .mission-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #8bc34a;
+        }
+
+        .mission-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: rgba(51, 51, 51, 0.8);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .mission-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .value-title {
+            font-size: 1.2rem;
+            color: #8bc34a;
+            margin-bottom: 10px;
+        }
+
+        .value-text {
+            color: rgba(51, 51, 51, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .beanstalk-container {
+                width: 300px;
+                height: 350px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .mission-section {
+                padding: 40px 30px;
+            }
+
+            .mission-title {
+                font-size: 2rem;
+            }
+
+            .mission-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-coin"></div>
+        <div class="floating-coin"></div>
+        <div class="floating-coin"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </div>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about" class="active">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#login" class="cta-button">Login</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1 class="hero-title">About Us</h1>
+                <p class="hero-description">
+                    We're comprehensive and find the platform processes that ensure reliability and innovation in business finance. Through smart lending solutions and trusted partnerships, we've become the go-to platform for ambitious businesses.
+                </p>
+                <div class="hero-highlight">
+                    <h3>Our Philosophy</h3>
+                    <p>Just like a peapod nurtures its seeds, we nurture your business dreams with sustainable financial solutions that grow with you.</p>
+                </div>
+            </div>
+            
+            <div class="beanstalk-container">
+                <div class="beanstalk">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <span class="stat-number">25,000+</span>
+                <div class="stat-label">Active Users</div>
+                <div class="stat-description">Growing businesses trust us</div>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">$50M+</span>
+                <div class="stat-label">Funding Provided</div>
+                <div class="stat-description">Capital deployed to fuel growth</div>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">98.5%</span>
+                <div class="stat-label">Satisfaction Rate</div>
+                <div class="stat-description">Customer approval rating</div>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">15,600</span>
+                <div class="stat-label">Loans Approved</div>
+                <div class="stat-description">Dreams turned into reality</div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <h2 class="mission-title">Growing Together, Naturally</h2>
+            <p class="mission-text">
+                At Peapod Finance, we believe that business growth should be sustainable, transparent, and mutually beneficial. Our mission is to cultivate financial opportunities that help small and medium businesses flourish while maintaining our commitment to environmental and social responsibility.
+            </p>
+            
+            <div class="mission-values">
+                <div class="value-item">
+                    <div class="value-icon">🌱</div>
+                    <div class="value-title">Sustainable Growth</div>
+                    <div class="value-text">We focus on long-term partnerships that benefit both businesses and communities.</div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <div class="value-title">Trust & Transparency</div>
+                    <div class="value-text">Clear terms, honest communication, and reliable support every step of the way.</div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">🚀</div>
+                    <div class="value-title">Innovation</div>
+                    <div class="value-text">Cutting-edge financial solutions designed for modern business challenges.</div>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">💚</div>
+                    <div class="value-title">Social Impact</div>
+                    <div class="value-text">Supporting businesses that make a positive difference in their communities.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe stat cards for animation
+        document.querySelectorAll('.stat-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Animate numbers counting up
+        function animateNumber(element, target) {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                let current;
+                if (target >= 1000000) {
+                    current = Math.floor(progress * (target / 1000000));
+                    element.textContent = current + 'M+';
+                } else if (target >= 1000) {
+                    current = Math.floor(progress * (target / 1000));
+                    element.textContent = current.toLocaleString() + 'K+';
+                } else if (target < 100) {
+                    current = (progress * target).toFixed(1);
+                    element.textContent = current + '%';
+                } else {
+                    current = Math.floor(progress * target);
+                    element.textContent = current.toLocaleString();
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    // Set final values
+                    if (target === 50000000) element.textContent = '$50M+';
+                    else if (target === 25000) element.textContent = '25,000+';
+                    else if (target === 98.5) element.textContent = '98.5%';
+                    else if (target === 15600) element.textContent = '15,600';
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+
+        // Start number animations when stats come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = [25000, 50000000, 98.5, 15600];
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    
+                    statNumbers.forEach((num, index) => {
+                        setTimeout(() => {
+                            animateNumber(num, numbers[index]);
+                        }, index * 200);
+                    });
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(document.querySelector('.stats-section'));
+    </script>
+</body>
+</html>

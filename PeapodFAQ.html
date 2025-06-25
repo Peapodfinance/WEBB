@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - FAQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #8bc34a;
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .header-cta:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.08;
+            animation: leafFloat 25s infinite linear;
+        }
+
+        .floating-leaf:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .floating-leaf:nth-child(2) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 8s;
+            animation-duration: 35s;
+        }
+
+        .floating-leaf:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 15s;
+            animation-duration: 28s;
+        }
+
+        @keyframes leafFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.08;
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+                opacity: 0.12;
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+                opacity: 0.08;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 50px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 50px 40px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+        }
+
+        .hero-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #8bc34a 0%, #7bb239 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            border-radius: 25px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8bc34a;
+            font-size: 1.2rem;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+            margin-bottom: 40px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .chat-info h3 {
+            color: #8bc34a;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .chat-info p {
+            color: rgba(51, 51, 51, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .chat-status {
+            margin-left: auto;
+            background: #4ade80;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Chat Messages */
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message-group {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .message-group:nth-child(1) { animation-delay: 0.1s; }
+        .message-group:nth-child(2) { animation-delay: 0.2s; }
+        .message-group:nth-child(3) { animation-delay: 0.3s; }
+        .message-group:nth-child(4) { animation-delay: 0.4s; }
+        .message-group:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #e5e7eb, #f3f4f6);
+            color: #374151;
+            padding: 15px 20px;
+            border-radius: 20px 20px 5px 20px;
+            max-width: 70%;
+            margin-bottom: 10px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 20px 20px 20px 5px;
+            max-width: 80%;
+            line-height: 1.5;
+            box-shadow: 0 3px 10px rgba(139, 195, 74, 0.3);
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: rgba(51, 51, 51, 0.5);
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .bot-message .message-time {
+            color: rgba(255, 255, 255, 0.7);
+            text-align: left;
+        }
+
+        /* Categories */
+        .categories-section {
+            margin-bottom: 40px;
+        }
+
+        .categories-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            background: rgba(139, 195, 74, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.2);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .category-title {
+            font-weight: 600;
+            color: #8bc34a;
+            margin-bottom: 5px;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.6);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.15);
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8bc34a;
+            margin-bottom: 15px;
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 195, 74, 0.4);
+        }
+
+        .contact-button.secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #8bc34a;
+            border: 2px solid #8bc34a;
+        }
+
+        .contact-button.secondary:hover {
+            background: #8bc34a;
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .chat-container {
+                padding: 25px;
+            }
+
+            .user-message, .bot-message {
+                max-width: 85%;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-leaf">🌿</div>
+        <div class="floating-leaf">🍃</div>
+        <div class="floating-leaf">🌱</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#faq" class="active">FAQ</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#qualify" class="header-cta">Get Started</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-icon">🤔💬</div>
+            <h1 class="hero-title">Frequently Asked Questions</h1>
+            <p class="hero-subtitle">
+                Got questions? We've got answers! Chat with our AI assistant or browse common questions below.
+            </p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for answers..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+        </section>
+
+        <!-- Chat Container -->
+        <section class="chat-container">
+            <div class="chat-header">
+                <div class="chat-avatar">🌱</div>
+                <div class="chat-info">
+                    <h3>Peapod Assistant</h3>
+                    <p>Business Finance Expert</p>
+                </div>
+                <div class="chat-status">● Online</div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message-group">
+                    <div class="user-message">
+                        How quickly can I get approved for funding?
+                        <div class="message-time">2:34 PM</div>
+                    </div>
+                    <div class="bot-message">
+                        Great question! 🚀 Most of our applications are reviewed within 24-48 hours. Once approved, funding typically happens within 24-72 hours. For urgent needs, we also offer same-day funding options for qualified applicants!
+                        <div class="message-time">2:35 PM</div>
+                    </div>
+                </div>
+
+                <div class="message-group">
+                    <div class="user-message">
+                        What credit score do I need to qualify?
+                        <div class="message-time">2:36 PM</div>
+                    </div>
+                    <div class="bot-message">
+                        We work with businesses across the credit spectrum! 📊 While requirements vary by lender, we have options for credit scores as low as 450. Many of our most popular programs accept scores of 550+. The higher your score, the better rates and terms you'll qualify for.
+                        <div class="message-time">2:37 PM</div>
+                    </div>
+                </div>
+
+                <div class="message-group">
+                    <div class="user-message">
+                        Are there any hidden fees I should know about?
+                        <div class="message-time">2:38 PM</div>
+                    </div>
+                    <div class="bot-message">
+                        Absolutely not! 💯 Transparency is core to our values. All fees are clearly disclosed upfront before you sign anything. No surprises, no hidden costs. What you see is what you get - that's the Peapod promise!
+                        <div class="message-time">2:39 PM</div>
+                    </div>
+                </div>
+
+                <div class="message-group">
+                    <div class="user-message">
+                        How does the loan management portal work?
+                        <div class="message-time">2:40 PM</div>
+                    </div>
+                    <div class="bot-message">
+                        Your portal is like mission control for your financing! 🎛️ Track payments, view balances, schedule autopay, download statements, and even apply for additional funding. It's available 24/7 and works perfectly on desktop and mobile. Think of it as your financial dashboard! 📱
+                        <div class="message-time">2:41 PM</div>
+                    </div>
+                </div>
+
+                <div class="message-group">
+                    <div class="user-message">
+                        Can I apply if my business is less than a year old?
+                        <div class="message-time">2:42 PM</div>
+                    </div>
+                    <div class="bot-message">
+                        Yes! 🌱 We love helping new businesses grow. While some traditional lenders require 2+ years in business, we have programs specifically designed for newer companies. We look at factors like revenue, cash flow, and business plan - not just time in business.
+                        <div class="message-time">2:43 PM</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="categories-title">Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="showCategory('application')">
+                    <div class="category-icon">📝</div>
+                    <div class="category-title">Application Process</div>
+                    <div class="category-count">8 questions</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategory('eligibility')">
+                    <div class="category-icon">✅</div>
+                    <div class="category-title">Eligibility Requirements</div>
+                    <div class="category-count">6 questions</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategory('funding')">
+                    <div class="category-icon">💰</div>
+                    <div class="category-title">Funding & Rates</div>
+                    <div class="category-count">12 questions</div>
+                </div>
+                
+                <div class="category-card" onclick="showCategory('portal')">
+                    <div class="category-icon">📊</div>
+                    <div class="category-title">Portal & Management</div>
+                    <div class="category-count">7 questions</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 class="contact-title">Still Have Questions?</h2>
+            <p class="contact-description">
+                Can't find what you're looking for? Our expert team is here to help! 
+                Get personalized answers to your specific business financing questions.
+            </p>
+            
+            <div class="contact-buttons">
+                <a href="#chat" class="contact-button" onclick="startLiveChat()">
+                    💬 Start Live Chat
+                </a>
+                <a href="#call" class="contact-button secondary" onclick="scheduleCall()">
+                    📞 Schedule a Call
+                </a>
+                <a href="#email" class="contact-button secondary" onclick="sendEmail()">
+                    ✉️ Send an Email
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            // In a real application, this would filter the FAQ content
+            console.log('Searching for:', searchTerm);
+        });
+
+        // Category functions
+        function showCategory(category) {
+            const categoryNames = {
+                'application': 'Application Process',
+                'eligibility': 'Eligibility Requirements', 
+                'funding': 'Funding & Rates',
+                'portal': 'Portal & Management'
+            };
+            
+            alert(`📂 ${categoryNames[category]}\n\nYou will be shown all questions related to ${categoryNames[category].toLowerCase()}.`);
+            // In real application: filter and display category-specific questions
+        }
+
+        // Contact functions
+        function startLiveChat() {
+            alert('💬 Live Chat\n\nConnecting you with a Peapod Finance expert...');
+            // In real application: open live chat widget
+        }
+
+        function scheduleCall() {
+            alert('📞 Schedule a Call\n\nYou will be redirected to our calendar booking system.');
+            // In real application: window.location.href = '/schedule-call';
+        }
+
+        function sendEmail() {
+            alert('✉️ Send Email\n\nYou will be redirected to our contact form.');
+            // In real application: window.location.href = '/contact';
+        }
+
+        // Add more interactive chat messages on scroll
+        let messageIndex = 0;
+        const additionalMessages = [
+            {
+                user: "What documents do I need to apply?",
+                bot: "Just the basics! 📄 We need bank statements (3 months), a government ID, and basic business info. That's it! Our streamlined process means less paperwork and faster decisions.",
+                delay: 1000
+            },
+            {
+                user: "Do you work with all types of businesses?",
+                bot: "We work with most business types! 🏢 From restaurants to tech startups, retail stores to service companies. Some restrictions apply to high-risk industries, but we'll let you know upfront if there are any limitations.",
+                delay: 2000
+            }
+        ];
+
+        // Simulate more messages appearing
+        window.addEventListener('scroll', function() {
+            const chatContainer = document.querySelector('.chat-container');
+            const rect = chatContainer.getBoundingClientRect();
+            
+            if (rect.bottom < window.innerHeight && messageIndex < additionalMessages.length) {
+                setTimeout(() => {
+                    addChatMessage(additionalMessages[messageIndex]);
+                    messageIndex++;
+                }, additionalMessages[messageIndex].delay);
+            }
+        });
+
+        function addChatMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageGroup = document.createElement('div');
+            messageGroup.className = 'message-group';
+            messageGroup.style.opacity = '0';
+            
+            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            messageGroup.innerHTML = `
+                <div class="user-message">
+                    ${message.user}
+                    <div class="message-time">${currentTime}</div>
+                </div>
+                <div class="bot-message">
+                    ${message.bot}
+                    <div class="message-time">${currentTime}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageGroup);
+            
+            // Animate in
+            setTimeout(() => {
+                messageGroup.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                messageGroup.style.opacity = '1';
+                messageGroup.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Add typing indicator effect
+        function showTypingIndicator() {
+            // This would show a "Peapod is typing..." indicator
+            // Implementation would depend on your chat system
+        }
+    </script>
+</body>
+</html>

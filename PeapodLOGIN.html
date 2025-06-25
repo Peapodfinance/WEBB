@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e8d5c4 0%, #f4e9d9 30%, #8bc34a 70%, #689f38 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Floating nature elements */
+        .floating-leaves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.7;
+            animation: leafFloat 15s infinite linear;
+        }
+
+        .leaf:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .leaf:nth-child(2) {
+            left: 50%;
+            animation-delay: 4s;
+            animation-duration: 16s;
+        }
+
+        .leaf:nth-child(3) {
+            left: 80%;
+            animation-delay: 8s;
+            animation-duration: 14s;
+        }
+
+        @keyframes leafFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #8bc34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #8bc34a;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .app-subtitle {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #8bc34a;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 15px;
+            font-size: 1rem;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+        }
+
+        .form-input::placeholder {
+            color: #bbb;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 16px;
+            background: #8bc34a;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-button:hover {
+            background: #7bb239;
+            transform: translateY(-2px);
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            color: #8bc34a;
+            border: 2px solid #8bc34a;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .signup-button:hover {
+            background: #8bc34a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .forgot-password {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .forgot-password a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .footer-link {
+            color: #8bc34a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .nature-accent {
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #8bc34a;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #666;
+        }
+
+        .modal-body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .modal-body h3 {
+            color: #8bc34a;
+            margin: 20px 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            background: #f8fdf8;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .login-container {
+                margin: 20px;
+                padding: 30px 25px;
+            }
+            
+            .app-title {
+                font-size: 1.5rem;
+            }
+            
+            .logo-container {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating nature elements -->
+    <div class="floating-leaves">
+        <div class="leaf">🌿</div>
+        <div class="leaf">🍃</div>
+        <div class="leaf">🌱</div>
+    </div>
+
+    <div class="login-container">
+        <div class="logo-container">
+            <div class="logo-icon"></div>
+        </div>
+        <h1 class="app-title">PEAPOD</h1>
+        <p class="app-subtitle">Business Finance Solutions</p>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="userId">User ID</label>
+                <input 
+                    type="text" 
+                    id="userId" 
+                    name="userId" 
+                    class="form-input" 
+                    placeholder="Enter your User ID"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-input" 
+                    placeholder="Enter your Password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+            <button type="button" class="signup-button" onclick="handleSignUp()">Sign Up</button>
+        </form>
+
+        <div class="forgot-password">
+            <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+        </div>
+
+        <div class="footer-links">
+            <a href="#" class="footer-link" onclick="showAboutUs()">About Us</a>
+            <a href="#" class="footer-link" onclick="showContactUs()">Contact Us</a>
+        </div>
+
+        <div class="nature-accent">🌱</div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">About Peapod Finance</h2>
+                <button class="modal-close" onclick="closeModal('aboutModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Welcome to Peapod Finance, where business growth meets sustainable financial solutions. We're dedicated to helping small and medium businesses flourish through innovative lending and financial services.</p>
+                
+                <h3>Our Mission</h3>
+                <p>To cultivate financial growth for businesses while maintaining environmental and social responsibility. Just like a peapod nurtures its seeds, we nurture your business dreams.</p>
+                
+                <h3>What We Offer</h3>
+                <p>• Business loans and lines of credit<br>
+                • Equipment financing<br>
+                • Working capital solutions<br>
+                • Merchant cash advances<br>
+                • Financial consultation and planning</p>
+                
+                <h3>Our Values</h3>
+                <p>Sustainability, transparency, and growth-focused partnerships define everything we do. We believe in building lasting relationships that help businesses and communities thrive together.</p>
+                
+                <p><em>Growing together, naturally.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Contact Peapod Finance</h2>
+                <button class="modal-close" onclick="closeModal('contactModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>We're here to help your business grow! Reach out to us through any of the following channels:</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>Phone:</strong> 1-800-PEAPOD-1 (1-800-732-7631)
+                    </div>
+                    <div class="contact-item">
+                        <strong>Email:</strong> hello@peapodfinance.com
+                    </div>
+                    <div class="contact-item">
+                        <strong>Website:</strong> www.peapodfinance.com
+                    </div>
+                    <div class="contact-item">
+                        <strong>Address:</strong> 123 Green Valley Drive, Suite 400<br>
+                        Prosperity City, PC 12345
+                    </div>
+                </div>
+                
+                <h3>Business Hours</h3>
+                <p>Monday - Friday: 8:00 AM - 6:00 PM EST<br>
+                Saturday: 9:00 AM - 2:00 PM EST<br>
+                Sunday: Closed</p>
+                
+                <h3>Quick Support</h3>
+                <p>For existing customers, log into your account for 24/7 access to your loan information, payment history, and support resources.</p>
+                
+                <p><em>We typically respond to inquiries within 2 business hours during business days.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            
+            if (userId && password) {
+                alert('Login successful! 🌿');
+                // In a real application, you would redirect:
+                // window.location.href = '/dashboard';
+            }
+        });
+
+        function handleSignUp() {
+            alert('Sign up functionality would redirect to registration page! 🌱');
+            // In a real application, you would redirect:
+            // window.location.href = '/signup';
+        }
+
+        function showForgotPassword() {
+            alert('Forgot password functionality would be implemented here.');
+        }
+
+        function showAboutUs() {
+            document.getElementById('aboutModal').classList.add('show');
+        }
+
+        function showContactUs() {
+            document.getElementById('contactModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peapod Finance - Resources & Business Insights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 50px;
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(139, 195, 74, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8bc34a;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after, .nav a.active::after {
+            width: 100%;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: #8bc34a;
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+        }
+
+        .header-cta:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.06;
+            animation: float 30s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 10s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 20s;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 40%;
+            right: 30%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8bc34a 0%, #7bb239 50%, #689f38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(51, 51, 51, 0.8);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-search {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 60px 20px 25px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #8bc34a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(139, 195, 74, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .search-button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-categories {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .category-filter {
+            padding: 10px 20px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.8);
+            color: rgba(51, 51, 51, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-filter:hover, .category-filter.active {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            border-color: #8bc34a;
+            transform: translateY(-2px);
+        }
+
+        .filter-sort {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sort-select {
+            padding: 10px 15px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Featured Content */
+        .featured-section {
+            padding: 80px 50px;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 50px;
+        }
+
+        .featured-carousel {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .featured-main {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .featured-main:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(139, 195, 74, 0.25);
+        }
+
+        .featured-image {
+            height: 250px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,20 Q50,10 80,20 Q90,50 80,80 Q50,90 20,80 Q10,50 20,20 Z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E") center/cover;
+            opacity: 0.3;
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .featured-category {
+            background: rgba(139, 195, 74, 0.1);
+            color: #8bc34a;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .featured-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .featured-excerpt {
+            color: rgba(51, 51, 51, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .featured-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(51, 51, 51, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .featured-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .featured-secondary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.2);
+        }
+
+        .secondary-image {
+            height: 120px;
+            background: linear-gradient(45deg, #a8e063, #8bc34a);
+        }
+
+        .secondary-content {
+            padding: 20px;
+        }
+
+        .secondary-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .secondary-meta {
+            color: rgba(51, 51, 51, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Content Grid */
+        .content-section {
+            padding: 80px 50px;
+        }
+
+        .content-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(139, 195, 74, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(139, 195, 74, 0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #8bc34a, #a8e063);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-type {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #8bc34a;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-reading-time {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-category {
+            color: #8bc34a;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            color: rgba(51, 51, 51, 0.7);
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(139, 195, 74, 0.1);
+        }
+
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.6);
+        }
+
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.6);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 50px;
+            background: linear-gradient(135deg, rgba(139, 195, 74, 0.1), rgba(139, 195, 74, 0.05));
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(139, 195, 74, 0.15);
+        }
+
+        .newsletter-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #8bc34a;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-subtitle {
+            color: rgba(51, 51, 51, 0.7);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            border-radius: 15px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .newsletter-button {
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: linear-gradient(135deg, #7bb239, #689f38);
+            transform: translateY(-2px);
+        }
+
+        .newsletter-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.6);
+        }
+
+        /* Load More */
+        .load-more-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .load-more-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #8bc34a;
+            border: 2px solid #8bc34a;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more-button:hover {
+            background: #8bc34a;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .hero-section {
+                padding: 60px 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .filter-section {
+                padding: 30px 20px;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-categories {
+                justify-content: center;
+            }
+
+            .featured-section, .content-section, .newsletter-section {
+                padding: 60px 20px;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-benefits {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #8bc34a, #7bb239);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element">💡</div>
+        <div class="floating-element">📊</div>
+        <div class="floating-element">🌱</div>
+        <div class="floating-element">💰</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="#home" class="logo">
+            <div class="logo-icon">🌱</div>
+            <span>PEAPOD</span>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#resources" class="active">Resources</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#qualify" class="header-cta">Get Started</a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Business Growth Resources</h1>
+            <p class="hero-subtitle">
+                Expert insights, practical guides, and powerful tools to help your business thrive. 
+                From funding strategies to growth hacks, we've got you covered.
+            </p>
+            
+            <div class="hero-search">
+                <input type="text" class="search-input" placeholder="Search articles, guides, and tools..." id="heroSearch">
+                <button class="search-button" onclick="performSearch()">🔍</button>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <div class="filter-categories">
+                    <div class="category-filter active" data-category="all">All Content</div>
+                    <div class="category-filter" data-category="funding">💰 Funding</div>
+                    <div class="category-filter" data-category="growth">📈 Growth</div>
+                    <div class="category-filter" data-category="tools">🧮 Tools</div>
+                    <div class="category-filter" data-category="guides">📖 Guides</div>
+                    <div class="category-filter" data-category="success">⭐ Success Stories</div>
+                </div>
+                
+                <div class="filter-sort">
+                    <span>Sort by:</span>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="reading-time">Reading Time</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Content -->
+        <section class="featured-section">
+            <h2 class="section-title">Featured Content</h2>
+            
+            <div class="featured-carousel">
+                <div class="featured-grid">
+                    <article class="featured-main" onclick="openArticle('main-featured')">
+                        <div class="featured-image"></div>
+                        <div class="featured-content">
+                            <span class="featured-category">Business Growth</span>
+                            <h3 class="featured-title">The Complete Guide to Business Financing in 2025</h3>
+                            <p class="featured-excerpt">
+                                Navigate the evolving landscape of business financing with our comprehensive guide. 
+                                Learn about new funding options, digital lending trends, and strategies to secure the best rates for your business.
+                            </p>
+                            <div class="featured-meta">
+                                <span>By Sarah Chen • 12 min read</span>
+                                <span>January 15, 2025</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="featured-secondary" onclick="openArticle('secondary-1')">
+                        <div class="secondary-image"></div>
+                        <div class="secondary-content">
+                            <h4 class="secondary-title">Cash Flow Calculator: Plan Your Business Future</h4>
+                            <div class="secondary-meta">Interactive Tool • 5 min</div>
+                        </div>
+                    </article>
+                    
+                    <article class="featured-secondary" onclick="openArticle('secondary-2')">
+                        <div class="secondary-image"></div>
+                        <div class="secondary-content">
+                            <h4 class="secondary-title">Success Story: How Verde Restaurant Doubled Revenue</h4>
+                            <div class="secondary-meta">Case Study • 8 min read</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <section class="content-section">
+            <div class="content-grid" id="contentGrid">
+                <article class="content-card" onclick="openArticle('card-1')">
+                    <div class="card-image">
+                        <span class="card-type">Article</span>
+                        <span class="card-reading-time">6 min read</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Financial Planning</div>
+                        <h3 class="card-title">5 Signs Your Business Needs Working Capital</h3>
+                        <p class="card-excerpt">
+                            Recognize the early warning signs that indicate your business could benefit from additional working capital and learn how to address them proactively.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="author-avatar">MJ</div>
+                                <span>Mike Johnson</span>
+                            </div>
+                            <div class="card-date">Jan 12, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="content-card" onclick="openArticle('card-2')">
+                    <div class="card-image">
+                        <span class="card-type">Calculator</span>
+                        <span class="card-reading-time">Interactive</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Tools</div>
+                        <h3 class="card-title">Business Loan Payment Calculator</h3>
+                        <p class="card-excerpt">
+                            Calculate monthly payments, total interest, and compare different loan scenarios with our easy-to-use interactive calculator.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="author-avatar">PF</div>
+                                <span>Peapod Finance</span>
+                            </div>
+                            <div class="card-date">Jan 10, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="content-card" onclick="openArticle('card-3')">
+                    <div class="card-image">
+                        <span class="card-type">Guide</span>
+                        <span class="card-reading-time">15 min read</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Funding Guides</div>
+                        <h3 class="card-title">Equipment Financing vs. Traditional Loans: Which is Right for You?</h3>
+                        <p class="card-excerpt">
+                            A comprehensive comparison of equipment financing and traditional business loans, helping you choose the best option for your equipment needs.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="author-avatar">LR</div>
+                                <span>Lisa Rodriguez</span>
+                            </div>
+                            <div class="card-date">Jan 8, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="content-card" onclick="openArticle('card-4')">
+                    <div class="card-image">
+                        <span class="card-type">Success Story</span>
+                        <span class="card-reading-time">10 min read</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Success Stories</div>
+                        <h3 class="card-title">From Startup to Scale: TechStart's $2M Growth Journey</h3>
+                        <p class="card-excerpt">
+                            Follow TechStart Solutions' incredible journey from a small startup to a thriving company, powered by strategic financing decisions.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="author-avatar">SC</div>
+                                <span>Sarah Chen</span>
+                            </div>
+                            <div class="card-date">Jan 5, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="content-card" onclick="openArticle('card-5')">
+                    <div class="card-image">
+                        <span class="card-type">Article</span>
+                        <span class="card-reading-time">8 min read</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Business Growth</div>
+                        <h3 class="card-title">Understanding Your Credit Score: A Business Owner's Guide</h3>
+                        <p class="card-excerpt">
+                            Learn how personal and business credit scores affect your financing options and discover strategies to improve your creditworthiness.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="author-avatar">DJ</div>
+                                <span>David Kim</span>
+                            </div>
+                            <div class="card-date">Jan 3, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="content-card" onclick="openArticle('card-6')">
+                    <div class="card-image">
+                        <span class="card-type">Checklist</span>
+                        <span class="card-reading-time">5 min read</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">Funding Guides</div>
+                        <h3 class="card-title">Loan Application Checklist: Documents You'll Need</h3>
+                        <p class="card-excerpt">
+                            A complete checklist of documents and information you'll need to prepare for a successful business loan application.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-author">
+                                <div class="author-avatar">MJ</div>
+                                <span>Mike Johnson</span>
+                            </div>
+                            <div class="card-date">Dec 30, 2024</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Load More Section -->
+            <div class="load-more-section">
+                <button class="load-more-button" onclick="loadMoreContent()">
+                    Load More Articles
+                </button>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <div class="newsletter-icon">📬</div>
+                <h2 class="newsletter-title">Stay Ahead of the Curve</h2>
+                <p class="newsletter-subtitle">
+                    Get weekly insights, funding opportunities, and business growth tips delivered straight to your inbox. 
+                    Join 15,000+ business owners who trust our expertise.
+                </p>
+                
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+                
+                <div class="newsletter-benefits">
+                    <span>✓ Weekly business insights</span>
+                    <span>✓ Exclusive funding opportunities</span>
+                    <span>✓ No spam, unsubscribe anytime</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const scrollProgress = document.getElementById('scrollProgress');
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Update scroll progress bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('heroSearch').value;
+            alert(`🔍 Searching for: "${searchTerm}"\n\nIn a real application, this would filter the content and show relevant results.`);
+        }
+
+        // Category filtering
+        document.querySelectorAll('.category-filter').forEach(filter => {
+            filter.addEventListener('click', function() {
+                // Remove active class from all filters
+                document.querySelectorAll('.category-filter').forEach(f => f.classList.remove('active'));
+                // Add active class to clicked filter
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                filterContent(category);
+            });
+        });
+
+        function filterContent(category) {
+            console.log(`Filtering content by category: ${category}`);
+            // In a real application, this would filter the content cards
+            
+            // Add a subtle animation to show filtering is happening
+            const contentGrid = document.getElementById('contentGrid');
+            contentGrid.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                contentGrid.style.opacity = '1';
+                // Here you would actually filter and re-render the content
+            }, 300);
+        }
+
+        // Sort functionality
+        document.getElementById('sortSelect').addEventListener('change', function() {
+            const sortBy = this.value;
+            console.log(`Sorting content by: ${sortBy}`);
+            // In a real application, this would sort the content
+        });
+
+        // Article opening
+        function openArticle(articleId) {
+            const articleTitles = {
+                'main-featured': 'The Complete Guide to Business Financing in 2025',
+                'secondary-1': 'Cash Flow Calculator',
+                'secondary-2': 'Verde Restaurant Success Story',
+                'card-1': '5 Signs Your Business Needs Working Capital',
+                'card-2': 'Business Loan Payment Calculator',
+                'card-3': 'Equipment Financing vs. Traditional Loans',
+                'card-4': 'TechStart\'s $2M Growth Journey',
+                'card-5': 'Understanding Your Credit Score',
+                'card-6': 'Loan Application Checklist'
+            };
+            
+            alert(`📖 Opening: ${articleTitles[articleId]}\n\nYou will be redirected to the full article or interactive tool.`);
+            // In real application: window.location.href = `/resources/${articleId}`;
+        }
+
+        // Load more content
+        function loadMoreContent() {
+            const button = document.querySelector('.load-more-button');
+            button.textContent = 'Loading...';
+            button.disabled = true;
+            
+            // Simulate loading
+            setTimeout(() => {
+                button.textContent = 'Load More Articles';
+                button.disabled = false;
+                
+                // In a real application, you would append new content here
+                alert('📚 More content loaded!\n\nIn a real application, additional articles would be added to the grid.');
+            }, 1500);
+        }
+
+        // Newsletter subscription
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = this.querySelector('.newsletter-input');
+            const button = this.querySelector('.newsletter-button');
+            
+            button.textContent = 'Subscribing...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                alert(`🎉 Welcome to the Peapod community!\n\nThank you for subscribing with ${emailInput.value}. You'll receive our next newsletter on Monday!`);
+                
+                button.textContent = 'Subscribed!';
+                emailInput.value = '';
+                
+                setTimeout(() => {
+                    button.textContent = 'Subscribe';
+                    button.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Animate content cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content cards
+        document.querySelectorAll('.content-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Add reading progress for individual articles (when implemented)
+        function trackReadingProgress() {
+            // This would track how far someone has scrolled through an article
+            // and update a progress indicator
+        }
+
+        // Social sharing functionality (ready for implementation)
+        function shareArticle(articleId, platform) {
+            const shareUrls = {
+                twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=`,
+                linkedin: `https://linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`,
+                facebook: `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`
+            };
+            
+            // In a real application, this would open the sharing dialog
+            console.log(`Sharing article ${articleId} on ${platform}`);
+        }
+
+        // Search suggestions (advanced feature)
+        function showSearchSuggestions(query) {
+            // This would show autocomplete suggestions as user types
+            const suggestions = [
+                'business loan requirements',
+                'cash flow management',
+                'equipment financing options',
+                'credit score improvement',
+                'funding for startups'
+            ];
+            
+            return suggestions.filter(s => s.toLowerCase().includes(query.toLowerCase()));
+        }
+
+        // Enhanced search with filters
+        document.getElementById('heroSearch').addEventListener('input', function(e) {
+            const query = e.target.value;
+            if (query.length > 2) {
+                const suggestions = showSearchSuggestions(query);
+                // In a real app, show these suggestions in a dropdown
+                console.log('Search suggestions:', suggestions);
+            }
+        });
+    </script>
+</body>
+</html>
