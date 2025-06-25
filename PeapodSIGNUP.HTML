@@ -111,6 +111,38 @@
             box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
         }
 
+        .nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav a {
+            color: rgba(51, 51, 51, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8bc34a;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: #8bc34a;
+        }
+
         .header-nav {
             display: flex;
             gap: 15px;
@@ -453,6 +485,97 @@
             color: rgba(51, 51, 51, 0.7);
         }
 
+        /* Footer */
+        .footer {
+            background: rgba(45, 80, 22, 0.95);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 60px 50px 30px;
+            position: relative;
+            z-index: 10;
+            margin-top: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .footer-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer-section h3 {
+            color: #8bc34a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: #8bc34a;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(139, 195, 74, 0.3);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
         /* Loading State */
         .loading {
             opacity: 0.7;
@@ -487,6 +610,29 @@
 
             .header {
                 padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+
+            .footer-description {
+                max-width: 100%;
             }
         }
 
@@ -520,13 +666,21 @@
 
     <!-- Header -->
     <header class="header">
-        <a href="#home" class="logo">
+        <a href="index.html" class="logo">
             <div class="logo-icon">🌱</div>
             <span>PEAPOD</span>
         </a>
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="PeapodABOUTUS.HTML">About</a>
+            <a href="PeapodSERVICES.HTML">Services</a>
+            <a href="PeapodCALCULATOR.HTML">Calculator</a>
+            <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
+            <a href="PeapodRESOURCES.HTML">Resources</a>
+        </nav>
         <div class="header-nav">
             <span style="color: rgba(51, 51, 51, 0.7);">Already have an account?</span>
-            <a href="#signin" class="signin-link" onclick="signIn()">Sign In</a>
+            <a href="PeapodLOGIN.HTML" class="signin-link">Sign In</a>
         </div>
     </header>
 
@@ -611,7 +765,7 @@
                         <div class="checkbox-group">
                             <input type="checkbox" id="terms" name="terms" class="checkbox-input" required>
                             <label for="terms" class="checkbox-label">
-                                I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>
+                                I agree to the <a href="PeapodLEGAL.HTML">Terms of Service</a> and <a href="PeapodLEGAL.HTML">Privacy Policy</a>
                             </label>
                         </div>
                     </div>
@@ -630,7 +784,7 @@
                     </button>
 
                     <div class="signin-prompt">
-                        Already have an account? <a href="#signin" onclick="signIn()">Sign in here</a>
+                        Already have an account? <a href="PeapodLOGIN.HTML">Sign in here</a>
                     </div>
                 </form>
             </div>
@@ -687,6 +841,63 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="footer-logo-icon">🌱</div>
+                        <span>PEAPOD FINANCE</span>
+                    </a>
+                    <p class="footer-description">
+                        Empowering businesses to grow naturally through accessible funding solutions and trusted partnerships.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <div class="footer-links">
+                        <a href="PeapodHOWITWORKS.HTML">How It Works</a>
+                        <a href="PeapodFAQ.HTML">FAQ</a>
+                        <a href="PeapodCONTACTUS.HTML">Contact Us</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <div class="footer-links">
+                        <a href="PeapodLENDERS.HTML">Our Lenders</a>
+                        <a href="PeapodSERVICES.HTML">Services</a>
+                        <a href="PeapodCALCULATOR.HTML">Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <div class="footer-links">
+                        <a href="PeapodABOUTUS.HTML">About Us</a>
+                        <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
+                        <a href="PeapodRESOURCES.HTML">Resources</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <div class="footer-links">
+                        <a href="PeapodLEGAL.HTML">Legal Terms</a>
+                        <a href="PeapodLEGAL.HTML">Privacy Policy</a>
+                        <a href="PeapodLEGAL.HTML">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Peapod Finance. All rights reserved. | Helping businesses grow naturally.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Form validation and interaction
@@ -763,11 +974,6 @@
             } else {
                 return { text: 'Strong password', class: 'strength-strong' };
             }
-        }
-
-        function signIn() {
-            alert('🔐 Sign In\n\nYou will be redirected to the login page.');
-            // In real application: window.location.href = '/login';
         }
 
         // Add floating animation to benefits
