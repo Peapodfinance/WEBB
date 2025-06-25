@@ -860,4 +860,101 @@
         // Search functionality
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-            // In a real
+            // In a real application, this would filter the FAQ content
+            console.log('Searching for:', searchTerm);
+        });
+
+        // Category functions
+        function showCategory(category) {
+            const categoryNames = {
+                'application': 'Application Process',
+                'eligibility': 'Eligibility Requirements', 
+                'funding': 'Funding & Rates',
+                'portal': 'Portal & Management'
+            };
+            
+            alert(`📂 ${categoryNames[category]}\n\nYou will be shown all questions related to ${categoryNames[category].toLowerCase()}.`);
+            // In real application: filter and display category-specific questions
+        }
+
+        // Contact functions
+        function startLiveChat() {
+            alert('💬 Live Chat\n\nConnecting you with a Peapod Finance expert...');
+            // In real application: open live chat widget
+        }
+
+        function scheduleCall() {
+            alert('📞 Schedule a Call\n\nYou will be redirected to our calendar booking system.');
+            // In real application: window.location.href = '/schedule-call';
+        }
+
+        function sendEmail() {
+            alert('✉️ Send Email\n\nYou will be redirected to our contact form.');
+            // In real application: window.location.href = '/contact';
+        }
+
+        // Add more interactive chat messages on scroll
+        let messageIndex = 0;
+        const additionalMessages = [
+            {
+                user: "What documents do I need to apply?",
+                bot: "Just the basics! 📄 We need bank statements (3 months), a government ID, and basic business info. That's it! Our streamlined process means less paperwork and faster decisions.",
+                delay: 1000
+            },
+            {
+                user: "Do you work with all types of businesses?",
+                bot: "We work with most business types! 🏢 From restaurants to tech startups, retail stores to service companies. Some restrictions apply to high-risk industries, but we'll let you know upfront if there are any limitations.",
+                delay: 2000
+            }
+        ];
+
+        // Simulate more messages appearing
+        window.addEventListener('scroll', function() {
+            const chatContainer = document.querySelector('.chat-container');
+            const rect = chatContainer.getBoundingClientRect();
+            
+            if (rect.bottom < window.innerHeight && messageIndex < additionalMessages.length) {
+                setTimeout(() => {
+                    addChatMessage(additionalMessages[messageIndex]);
+                    messageIndex++;
+                }, additionalMessages[messageIndex].delay);
+            }
+        });
+
+        function addChatMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageGroup = document.createElement('div');
+            messageGroup.className = 'message-group';
+            messageGroup.style.opacity = '0';
+            
+            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            messageGroup.innerHTML = `
+                <div class="user-message">
+                    ${message.user}
+                    <div class="message-time">${currentTime}</div>
+                </div>
+                <div class="bot-message">
+                    ${message.bot}
+                    <div class="message-time">${currentTime}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageGroup);
+            
+            // Animate in
+            setTimeout(() => {
+                messageGroup.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                messageGroup.style.opacity = '1';
+                messageGroup.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Add typing indicator effect
+        function showTypingIndicator() {
+            // This would show a "Peapod is typing..." indicator
+            // Implementation would depend on your chat system
+        }
+    </script>
+</body>
+</html>
