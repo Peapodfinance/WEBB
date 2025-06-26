@@ -941,25 +941,38 @@
             });
 
             // Form submission
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const submitButton = form.querySelector('.submit-button');
-                submitButton.textContent = '🌱 Creating Account...';
-                submitButton.disabled = true;
-                form.classList.add('loading');
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const userData = Object.fromEntries(formData);
+    
+    const submitButton = form.querySelector('.submit-button');
+    submitButton.textContent = '🌱 Creating Account...';
+    submitButton.disabled = true;
+    form.classList.add('loading');
 
-                // Simulate account creation
-                setTimeout(() => {
-                    alert('🎉 Welcome to Peapod Finance!\n\nYour account has been created successfully. You will be redirected to your dashboard.');
-                    
-                    // Reset form (in real app, redirect to dashboard)
-                    submitButton.textContent = '🌱 Create My Account';
-                    submitButton.disabled = false;
-                    form.classList.remove('loading');
-                }, 2000);
-            });
-        });
+    try {
+        // Use AuthAPI to register new user
+        const response = await AuthAPI.register(userData);
+        
+        if (response.success) {
+            // Store session like in login
+            SessionManager.setSession(response.user, response.token);
+            
+            alert('🎉 Welcome to Peapod Finance!\n\nYour account has been created successfully.');
+            
+            // Redirect to profile
+            window.location.href = 'PeapodUSERPROFILE.html';
+        }
+    } catch (error) {
+        alert('❌ Registration failed: ' + error.message);
+        
+        submitButton.textContent = '🌱 Create My Account';
+        submitButton.disabled = false;
+        form.classList.remove('loading');
+    }
+});
 
         function checkPasswordStrength(password) {
             let score = 0;
