@@ -475,23 +475,31 @@
         loginForm.insertBefore(messageBox, loginForm.firstChild);
 
         loginForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
+    e.preventDefault();
+    
+    const userId = document.getElementById('userId').value;
+    const password = document.getElementById('password').value;
+    
+    try {
+        messageBox.textContent = 'Logging in...';
+        messageBox.style.color = '#8bc34a';
+        const response = await AuthAPI.login(userId, password);
+        if (response.success) {
+            // Store session
+            SessionManager.setSession(response.user, response.token);
             
-            const userId = document.getElementById('userId').value;
-            const password = document.getElementById('password').value;
+            messageBox.textContent = 'Login successful! Redirecting...';
             
-            try {
-                messageBox.textContent = 'Logging in...';
-                messageBox.style.color = '#8bc34a';
-                const response = await Auth.login(userId, password);
-                if (response.success) {
-                    messageBox.textContent = 'Login successful! Redirecting...';
-                }
-            } catch (error) {
-                messageBox.textContent = error.message || 'Login failed. Please try again.';
-                messageBox.style.color = '#dc3545';
-            }
-        });
+            // Redirect to profile
+            setTimeout(() => {
+                window.location.href = 'PeapodUSERPROFILE.html';
+            }, 1000);
+        }
+    } catch (error) {
+        messageBox.textContent = error.message || 'Login failed. Please try again.';
+        messageBox.style.color = '#dc3545';
+    }
+});
 
         function handleSignUp() {
             window.location.href = 'PeapodSIGNUP.HTML';
@@ -527,7 +535,7 @@
 
         // Check if user is already logged in
         if (Auth.isAuthenticated()) {
-            window.location.href = 'peapod-profile.html';
+            window.location.href = 'PeapodUSERPROFILE.html';
         }
     </script>
 </body>
