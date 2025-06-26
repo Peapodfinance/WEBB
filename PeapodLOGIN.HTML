@@ -13,249 +13,139 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e8d5c4 0%, #f4e9d9 30%, #8bc34a 70%, #689f38 100%);
+            background: linear-gradient(180deg, #f5f0e8 0%, #e8d5c4 30%, #c8d5a0 70%, #8bc34a 100%);
+            color: #333;
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        .header {
-            position: relative;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px 50px;
-            background: rgba(245, 240, 232, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #8bc34a;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #8bc34a, #7bb239);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+            padding: 20px;
         }
 
-        .nav {
-            display: flex;
-            gap: 35px;
-        }
-
-        .nav a {
-            color: rgba(51, 51, 51, 0.8);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #8bc34a;
-            transition: width 0.3s ease;
-        }
-
-        .nav a:hover::after {
-            width: 100%;
-        }
-
-        .nav a:hover {
-            color: #8bc34a;
-        }
-
-        .header-signin {
-            color: #8bc34a;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .header-signin:hover {
-            background: rgba(139, 195, 74, 0.1);
-            border-color: rgba(139, 195, 74, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .header-cta {
-            background: linear-gradient(135deg, #8bc34a, #7bb239);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
-        }
-
-        .header-cta:hover {
-            background: linear-gradient(135deg, #7bb239, #689f38);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 195, 74, 0.4);
-        }
-
-        /* Floating nature elements */
-        .floating-leaves {
+        /* Floating Elements */
+        .floating-elements {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            overflow: hidden;
             z-index: 1;
         }
 
-        .leaf {
+        .floating-leaf {
             position: absolute;
             font-size: 2rem;
-            opacity: 0.7;
-            animation: leafFloat 15s infinite linear;
+            opacity: 0.1;
+            animation: leafFloat 20s infinite linear;
         }
 
-        .leaf:nth-child(1) {
+        .floating-leaf:nth-child(1) {
+            top: 15%;
             left: 10%;
             animation-delay: 0s;
-            animation-duration: 12s;
+            animation-duration: 25s;
         }
 
-        .leaf:nth-child(2) {
-            left: 50%;
-            animation-delay: 4s;
-            animation-duration: 16s;
-        }
-
-        .leaf:nth-child(3) {
-            left: 80%;
+        .floating-leaf:nth-child(2) {
+            top: 70%;
+            right: 15%;
             animation-delay: 8s;
-            animation-duration: 14s;
+            animation-duration: 30s;
+        }
+
+        .floating-leaf:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 15s;
+            animation-duration: 22s;
         }
 
         @keyframes leafFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
             }
-            10% {
-                opacity: 0.7;
+            33% {
+                transform: translateY(-20px) rotate(120deg);
             }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
+            66% {
+                transform: translateY(10px) rotate(240deg);
             }
         }
 
-        /* Main Content */
-        .main-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 160px);
-            padding: 40px 20px;
+        /* Login Container */
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(139, 195, 74, 0.2);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            width: 100%;
+            max-width: 450px;
             position: relative;
             z-index: 10;
         }
 
-        .login-container {
-            background: white;
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
+        .logo-section {
             text-align: center;
-            position: relative;
+            margin-bottom: 40px;
         }
 
-        .login-logo-container {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: #8bc34a;
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #8bc34a;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.3);
         }
 
-        .login-logo-icon {
-            width: 40px;
-            height: 40px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .app-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #8bc34a;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .app-subtitle {
-            font-size: 0.9rem;
-            color: #999;
+        .welcome-text {
+            color: rgba(51, 51, 51, 0.8);
+            font-size: 1.1rem;
             margin-bottom: 30px;
         }
 
+        /* Form Styles */
+        .login-form {
+            width: 100%;
+        }
+
         .form-group {
-            margin-bottom: 20px;
-            text-align: left;
+            margin-bottom: 25px;
         }
 
         .form-label {
             display: block;
-            font-size: 0.9rem;
             font-weight: 600;
             color: #8bc34a;
             margin-bottom: 8px;
+            font-size: 0.95rem;
         }
 
         .form-input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid #f0f0f0;
-            border-radius: 15px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            border-radius: 12px;
             font-size: 1rem;
-            background: #fafafa;
+            background: rgba(255, 255, 255, 0.9);
             transition: all 0.3s ease;
             color: #333;
         }
@@ -264,573 +154,545 @@
             outline: none;
             border-color: #8bc34a;
             background: white;
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
         }
 
         .form-input::placeholder {
-            color: #bbb;
+            color: rgba(51, 51, 51, 0.5);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #8bc34a;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.8);
+        }
+
+        .forgot-password {
+            color: #8bc34a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
         }
 
         .login-button {
             width: 100%;
-            padding: 16px;
-            background: #8bc34a;
+            background: linear-gradient(135deg, #8bc34a, #7bb239);
             color: white;
             border: none;
-            border-radius: 25px;
+            padding: 16px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
         .login-button:hover {
-            background: #7bb239;
+            background: linear-gradient(135deg, #7bb239, #689f38);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 195, 74, 0.4);
         }
 
-        .signup-button {
-            width: 100%;
-            padding: 16px;
-            background: transparent;
-            color: #8bc34a;
-            border: 2px solid #8bc34a;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 15px;
+        .login-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .signup-button:hover {
-            background: #8bc34a;
-            color: white;
-            transform: translateY(-2px);
+        .login-button.loading {
+            color: transparent;
         }
 
-        .forgot-password {
-            margin-top: 25px;
-            text-align: center;
-        }
-
-        .forgot-password a {
-            color: #8bc34a;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-links {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            text-align: center;
-        }
-
-        .footer-link {
-            color: #8bc34a;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-
-        .nature-accent {
-            margin-top: 20px;
-            font-size: 1.5rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(45, 80, 22, 0.95);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 60px 50px 30px;
-            position: relative;
-            z-index: 10;
-            margin-top: auto;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #8bc34a;
-            text-decoration: none;
-        }
-
-        .footer-logo-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #8bc34a, #7bb239);
+        .login-button.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
+            animation: spin 1s linear infinite;
         }
 
-        .footer-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            max-width: 300px;
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .footer-section h3 {
-            color: #8bc34a;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .footer-links-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .footer-links-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 5px 0;
-        }
-
-        .footer-links-section a:hover {
-            color: #8bc34a;
-            transform: translateX(5px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(139, 195, 74, 0.3);
-            padding-top: 30px;
+        .divider {
             text-align: center;
+            margin: 30px 0;
+            position: relative;
+            color: rgba(51, 51, 51, 0.6);
         }
 
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
+            height: 1px;
+            background: rgba(139, 195, 74, 0.3);
         }
 
-        .modal-overlay.show {
-            display: flex;
+        .divider span {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 20px;
+            position: relative;
         }
 
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        .signup-link {
+            text-align: center;
+            color: rgba(51, 51, 51, 0.8);
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .signup-link a {
+            color: #8bc34a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error/Success Messages */
+        .message {
+            padding: 12px 15px;
+            border-radius: 8px;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            font-weight: 500;
+            display: none;
         }
 
-        .modal-title {
-            font-size: 1.4rem;
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .message.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Demo Credentials */
+        .demo-section {
+            background: rgba(139, 195, 74, 0.1);
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .demo-title {
             font-weight: 600;
             color: #8bc34a;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #999;
-            cursor: pointer;
-        }
-
-        .modal-close:hover {
-            color: #666;
-        }
-
-        .modal-body {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .modal-body h3 {
-            color: #8bc34a;
-            margin: 20px 0 10px 0;
-            font-size: 1.1rem;
-        }
-
-        .modal-body p {
-            margin-bottom: 15px;
-        }
-
-        .contact-info {
-            background: #f8fdf8;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        .contact-item {
             margin-bottom: 10px;
-            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .contact-item:last-child {
-            margin-bottom: 0;
+        .demo-credentials {
+            font-size: 0.9rem;
+            color: rgba(51, 51, 51, 0.8);
+            line-height: 1.5;
         }
 
-        /* Mobile responsiveness */
+        .demo-button {
+            background: rgba(139, 195, 74, 0.2);
+            border: 1px solid #8bc34a;
+            color: #8bc34a;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: #8bc34a;
+            color: white;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav {
-                gap: 20px;
-            }
-
-            .header div {
-                flex-direction: column;
-                gap: 10px !important;
-            }
-
-            .header-signin, .header-cta {
-                width: 100%;
-                max-width: 200px;
-                text-align: center;
-            }
-
             .login-container {
+                padding: 30px;
                 margin: 20px;
-                padding: 30px 25px;
             }
-            
-            .app-title {
+
+            .logo {
                 font-size: 1.5rem;
             }
-            
-            .login-logo-container {
-                width: 70px;
-                height: 70px;
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
 
-            .footer {
-                padding: 40px 20px 20px;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .footer-brand {
-                text-align: center;
-            }
-
-            .footer-description {
-                max-width: 100%;
+            .remember-forgot {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <a href="index.html" class="logo">
-            <div class="logo-icon">🌱</div>
-            <span>PEAPOD</span>
-        </a>
-        <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="PeapodABOUTUS.HTML">About</a>
-            <a href="PeapodSERVICES.HTML">Services</a>
-            <a href="PeapodCALCULATOR.HTML">Calculator</a>
-            <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
-            <a href="PeapodRESOURCES.html">Resources</a>
-        </nav>
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <span style="color: rgba(51, 51, 51, 0.7);">Welcome back!</span>
-            <a href="PeapodSIGNUP.HTML" class="header-cta">Sign Up</a>
-        </div>
-    </header>
-
-    <!-- Floating nature elements -->
-    <div class="floating-leaves">
-        <div class="leaf">🌿</div>
-        <div class="leaf">🍃</div>
-        <div class="leaf">🌱</div>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-leaf">🌿</div>
+        <div class="floating-leaf">🍃</div>
+        <div class="floating-leaf">🌱</div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <div class="login-container">
-            <div class="login-logo-container">
-                <div class="login-logo-icon"></div>
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="logo-section">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🌱</div>
+                <span>PEAPOD FINANCE</span>
+            </a>
+            <div class="welcome-text">Welcome back! Sign in to your account</div>
+        </div>
+
+        <!-- Demo Credentials Section -->
+        <div class="demo-section">
+            <div class="demo-title">
+                🎯 Demo Account
             </div>
-            <h1 class="app-title">PEAPOD</h1>
-            <p class="app-subtitle">Business Finance Solutions</p>
+            <div class="demo-credentials">
+                <strong>Email:</strong> demo@peapodfinance.com<br>
+                <strong>Password:</strong> demo123
+            </div>
+            <button class="demo-button" onclick="fillDemoCredentials()">
+                Use Demo Credentials
+            </button>
+        </div>
 
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label class="form-label" for="userId">User ID</label>
-                    <input 
-                        type="text" 
-                        id="userId" 
-                        name="userId" 
-                        class="form-input" 
-                        placeholder="Enter your User ID"
-                        required
-                    >
-                </div>
+        <!-- Login Form -->
+        <form class="login-form" id="loginForm">
+            <div class="message" id="messageBox"></div>
 
-                <div class="form-group">
-                    <label class="form-label" for="password">Password</label>
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="john.doe@company.com"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <div class="password-wrapper">
                     <input 
                         type="password" 
                         id="password" 
                         name="password" 
                         class="form-input" 
-                        placeholder="Enter your Password"
+                        placeholder="Enter your password"
                         required
                     >
+                    <button type="button" class="password-toggle" onclick="togglePassword()">
+                        👁️
+                    </button>
                 </div>
-
-                <button type="submit" class="login-button">Login</button>
-                <button type="button" class="signup-button" onclick="handleSignUp()">Sign Up</button>
-            </form>
-
-            <div class="forgot-password">
-                <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
             </div>
 
-            <div class="footer-links">
-                <a href="#" class="footer-link" onclick="showAboutUs()">About Us</a>
-                <a href="#" class="footer-link" onclick="showContactUs()">Contact Us</a>
+            <div class="remember-forgot">
+                <label class="remember-me">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password" onclick="forgotPassword()">Forgot password?</a>
             </div>
 
-            <div class="nature-accent">🌱</div>
+            <button type="submit" class="login-button" id="loginButton">
+                Sign In
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>or</span>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <a href="index.html" class="footer-logo">
-                        <div class="footer-logo-icon">🌱</div>
-                        <span>PEAPOD FINANCE</span>
-                    </a>
-                    <p class="footer-description">
-                        Empowering businesses to grow naturally through accessible funding solutions and trusted partnerships.
-                    </p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <div class="footer-links-section">
-                        <a href="PeapodHOWITWORKS.HTML">How It Works</a>
-                        <a href="PeapodFAQ.HTML">FAQ</a>
-                        <a href="PeapodCONTACTUS.HTML">Contact Us</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <div class="footer-links-section">
-                        <a href="PeapodLENDERS.HTML">Our Lenders</a>
-                        <a href="PeapodSERVICES.HTML">Services</a>
-                        <a href="PeapodCALCULATOR.HTML">Calculator</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <div class="footer-links-section">
-                        <a href="PeapodABOUTUS.HTML">About Us</a>
-                        <a href="PeapodPARTNERSHIPS.HTML">Partnerships</a>
-                        <a href="PeapodRESOURCES.html">Resources</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <div class="footer-links-section">
-                        <a href="PeapodLEGAL.HTML">Legal Terms</a>
-                        <a href="PeapodLEGAL.HTML">Privacy Policy</a>
-                        <a href="PeapodLEGAL.HTML">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Peapod Finance. All rights reserved. | Helping businesses grow naturally.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- About Us Modal -->
-    <div class="modal-overlay" id="aboutModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">About Peapod Finance</h2>
-                <button class="modal-close" onclick="closeModal('aboutModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Welcome to Peapod Finance, where business growth meets sustainable financial solutions. We're dedicated to helping small and medium businesses flourish through innovative lending and financial services.</p>
-                
-                <h3>Our Mission</h3>
-                <p>To cultivate financial growth for businesses while maintaining environmental and social responsibility. Just like a peapod nurtures its seeds, we nurture your business dreams.</p>
-                
-                <h3>What We Offer</h3>
-                <p>• Business loans and lines of credit<br>
-                • Equipment financing<br>
-                • Working capital solutions<br>
-                • Merchant cash advances<br>
-                • Financial consultation and planning</p>
-                
-                <h3>Our Values</h3>
-                <p>Sustainability, transparency, and growth-focused partnerships define everything we do. We believe in building lasting relationships that help businesses and communities thrive together.</p>
-                
-                <p><em>Growing together, naturally.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Us Modal -->
-    <div class="modal-overlay" id="contactModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Contact Peapod Finance</h2>
-                <button class="modal-close" onclick="closeModal('contactModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>We're here to help your business grow! Reach out to us through any of the following channels:</p>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <strong>Phone:</strong> 1-800-PEAPOD-1 (1-800-732-7631)
-                    </div>
-                    <div class="contact-item">
-                        <strong>Email:</strong> hello@peapodfinance.com
-                    </div>
-                    <div class="contact-item">
-                        <strong>Website:</strong> www.peapodfinance.com
-                    </div>
-                    <div class="contact-item">
-                        <strong>Address:</strong> 123 Green Valley Drive, Suite 400<br>
-                        Prosperity City, PC 12345
-                    </div>
-                </div>
-                
-                <h3>Business Hours</h3>
-                <p>Monday - Friday: 8:00 AM - 6:00 PM EST<br>
-                Saturday: 9:00 AM - 2:00 PM EST<br>
-                Sunday: Closed</p>
-                
-                <h3>Quick Support</h3>
-                <p>For existing customers, log into your account for 24/7 access to your loan information, payment history, and support resources.</p>
-                
-                <p><em>We typically respond to inquiries within 2 business hours during business days.</em></p>
-            </div>
+        <div class="signup-link">
+            Don't have an account? <a href="PeapodSIGNUP.HTML">Sign up here</a>
         </div>
     </div>
 
     <script>
-        const loginForm = document.getElementById('loginForm');
+        // Demo users database (in real app, this would be server-side)
+        const DEMO_USERS = {
+            'demo@peapodfinance.com': {
+                password: 'demo123',
+                userId: 'user_123',
+                name: 'John Doe',
+                businessName: 'ABC Manufacturing Corp',
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' // Mock JWT token
+            },
+            'jane.smith@techstartup.com': {
+                password: 'password123',
+                userId: 'user_456',
+                name: 'Jane Smith',
+                businessName: 'Tech Innovations LLC',
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+            }
+        };
 
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Authentication API class
+        class AuthAPI {
+            static async login(email, password) {
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Check demo users (in real app, this would be a server request)
+                const user = DEMO_USERS[email.toLowerCase()];
+                
+                if (!user || user.password !== password) {
+                    throw new Error('Invalid email or password');
+                }
+                
+                // Return user data (in real app, server would return JWT token)
+                return {
+                    success: true,
+                    user: {
+                        id: user.userId,
+                        email: email,
+                        name: user.name,
+                        businessName: user.businessName
+                    },
+                    token: user.token
+                };
+            }
             
-            const userId = document.getElementById('userId').value;
-            const password = document.getElementById('password').value;
+            static async refreshToken() {
+                // In real app, refresh JWT token
+                const token = localStorage.getItem('authToken');
+                if (!token) return null;
+                
+                // Validate and refresh token
+                return token;
+            }
+        }
+
+        // Session management
+        class SessionManager {
+            static setSession(userData, token, rememberMe = false) {
+                const storage = rememberMe ? localStorage : sessionStorage;
+                
+                storage.setItem('authToken', token);
+                storage.setItem('userData', JSON.stringify(userData));
+                storage.setItem('isLoggedIn', 'true');
+                
+                // Set session expiry
+                const expiryTime = new Date();
+                expiryTime.setHours(expiryTime.getHours() + (rememberMe ? 24 * 7 : 8)); // 7 days or 8 hours
+                storage.setItem('sessionExpiry', expiryTime.toISOString());
+            }
             
-            if (userId && password) {
-                alert('🎉 Login successful! Welcome back to Peapod Finance! 🌿\n\nYou will be redirected to your dashboard.');
-                // In a real application, you would redirect:
-                // window.location.href = '/dashboard';
+            static getSession() {
+                const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+                const userData = localStorage.getItem('userData') || sessionStorage.getItem('userData');
+                const expiry = localStorage.getItem('sessionExpiry') || sessionStorage.getItem('sessionExpiry');
+                
+                if (!token || !userData || !expiry) return null;
+                
+                // Check if session is expired
+                if (new Date() > new Date(expiry)) {
+                    this.clearSession();
+                    return null;
+                }
+                
+                return {
+                    token,
+                    user: JSON.parse(userData),
+                    isLoggedIn: true
+                };
+            }
+            
+            static clearSession() {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('userData');
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('sessionExpiry');
+                
+                sessionStorage.removeItem('authToken');
+                sessionStorage.removeItem('userData');
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('sessionExpiry');
+            }
+            
+            static redirectToProfile() {
+                window.location.href = 'PeapodPROFILE.HTML';
+            }
+            
+            static redirectToLogin() {
+                window.location.href = 'PeapodLOGIN.HTML';
+            }
+        }
+
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = SessionManager.getSession();
+            if (session && session.isLoggedIn) {
+                // User is already logged in, redirect to profile
+                SessionManager.redirectToProfile();
             }
         });
 
-        function handleSignUp() {
-            // Redirect to sign up page
-            window.location.href = 'PeapodSIGNUP.HTML';
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            const loginButton = document.getElementById('loginButton');
+            const messageBox = document.getElementById('messageBox');
+            
+            // Show loading state
+            loginButton.disabled = true;
+            loginButton.classList.add('loading');
+            hideMessage();
+            
+            try {
+                // Attempt login
+                const response = await AuthAPI.login(email, password);
+                
+                if (response.success) {
+                    // Store session
+                    SessionManager.setSession(response.user, response.token, rememberMe);
+                    
+                    // Show success message
+                    showMessage('Login successful! Redirecting to your dashboard...', 'success');
+                    
+                    // Redirect to profile after short delay
+                    setTimeout(() => {
+                        SessionManager.redirectToProfile();
+                    }, 1500);
+                }
+            } catch (error) {
+                // Show error message
+                showMessage(error.message, 'error');
+                
+                // Reset form state
+                loginButton.disabled = false;
+                loginButton.classList.remove('loading');
+            }
+        });
+
+        // Utility functions
+        function fillDemoCredentials() {
+            document.getElementById('email').value = 'demo@peapodfinance.com';
+            document.getElementById('password').value = 'demo123';
         }
 
-        function showForgotPassword() {
-            alert('🔑 Forgot Password\n\nYou will be redirected to our password recovery page where you can reset your password via email or SMS.');
-            // In a real application: window.location.href = '/forgot-password';
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = '👁️';
+            }
         }
 
-        function showAboutUs() {
-            document.getElementById('aboutModal').classList.add('show');
+        function forgotPassword() {
+            alert('🔐 Forgot Password\n\nYou would be redirected to a password reset page where you can enter your email to receive reset instructions.');
+            // In real app: window.location.href = 'forgot-password.html';
         }
 
-        function showContactUs() {
-            document.getElementById('contactModal').classList.add('show');
+        function showMessage(text, type) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = text;
+            messageBox.className = `message ${type}`;
+            messageBox.style.display = 'block';
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('show');
+        function hideMessage() {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.style.display = 'none';
         }
 
-        // Close modal when clicking outside
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeModal(this.id);
+        // Add input validation styling
+        const inputs = document.querySelectorAll('.form-input');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.required && !this.value.trim()) {
+                    this.style.borderColor = '#dc3545';
+                } else if (this.type === 'email' && this.value) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(this.value)) {
+                        this.style.borderColor = '#dc3545';
+                    } else {
+                        this.style.borderColor = '';
+                    }
+                } else {
+                    this.style.borderColor = '';
                 }
             });
+
+            input.addEventListener('input', function() {
+                if (this.style.borderColor === 'rgb(220, 53, 69)') {
+                    this.style.borderColor = '';
+                }
+            });
+        });
+
+        // Enter key handler
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !document.getElementById('loginButton').disabled) {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
         });
     </script>
 </body>
