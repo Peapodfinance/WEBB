@@ -926,6 +926,52 @@
         </div>
     </section>
 
+     <script>
+    // Animate stats numbers
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat-number');
+        
+        stats.forEach(stat => {
+            const target = parseFloat(stat.getAttribute('data-target'));
+            const prefix = stat.textContent.includes('$') ? '$' : '';
+            const suffix = stat.textContent.includes('M') ? 'M' : 
+                         stat.textContent.includes('%') ? '%' : 
+                         stat.textContent.includes('hrs') ? 'hrs' : '';
+            
+            let current = 0;
+            const increment = target / 100;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                stat.textContent = prefix + Math.floor(current) + suffix;
+            }, 20);
+        });
+    }
+
+    // Start animation when stats section is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    // Observe the stats section
+    document.addEventListener('DOMContentLoaded', () => {
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    });
+    </script>
+    
     <!-- Testimonials Section -->
     <section class="testimonials-section">
         <div class="testimonials-container">
