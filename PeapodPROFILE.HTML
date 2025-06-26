@@ -581,19 +581,15 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                ðŸŒ± Peapod Finance
+                <span>ðŸŒ±</span>
+                Peapod Finance
             </a>
+            <button id="mobileMenuToggle" class="mobile-menu-toggle">â˜°</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="PeapodABOUTUS.HTML">About</a></li>
-                <li><a href="PeapodSERVICES.HTML">Services</a></li>
-                <li><a href="PeapodCALCULATOR.HTML">Calculator</a></li>
-                <li><a href="PeapodCONTACTUS.HTML">Contact</a></li>
+                <li class="user-menu">
+                    <div class="user-avatar" onclick="toggleUserMenu()">JD</div>
+                </li>
             </ul>
-            <div class="user-menu">
-                <div class="user-avatar" onclick="toggleUserMenu()">JD</div>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">â˜°</button>
-            </div>
         </div>
     </nav>
 
