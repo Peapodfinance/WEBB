@@ -188,6 +188,42 @@ class PeapodAPI {
                 employees: user.employees
             },
             token: token
+            static async register(userData) {
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Basic validation
+    if (this.DEMO_USERS[userData.email.toLowerCase()]) {
+        throw new Error('User already exists with this email');
+    }
+    
+    // Create new user
+    const newUser = {
+        userId: `user_${Date.now()}`,
+        email: userData.email,
+        name: `${userData.firstName} ${userData.lastName}`,
+        businessName: userData.businessName,
+        phone: userData.phone,
+        industry: userData.industry,
+        website: userData.businessWebsite || '',
+        title: 'Business Owner'
+    };
+    
+    // Add to demo users
+    this.DEMO_USERS[userData.email.toLowerCase()] = {
+        password: userData.password,
+        ...newUser
+    };
+    
+    // Generate token
+    const token = `mock_jwt_token_${Date.now()}`;
+    
+    return {
+        success: true,
+        user: newUser,
+        token: token
+    };
+}
         };
     }
     
