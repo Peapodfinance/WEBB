@@ -86,6 +86,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            position: relative;
         }
 
         .user-avatar {
@@ -109,6 +110,61 @@
             color: #8bc34a;
             cursor: pointer;
             padding: 5px;
+        }
+
+        /* User Menu Dropdown */
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            box-shadow: 0 8px 25px rgba(139, 195, 74, 0.15);
+            border: 1px solid rgba(139, 195, 74, 0.2);
+            min-width: 150px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-dropdown.active {
+            display: block;
+        }
+
+        .user-dropdown a,
+        .user-dropdown button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            text-align: left;
+        }
+
+        .user-dropdown a:hover,
+        .user-dropdown button:hover {
+            background: rgba(139, 195, 74, 0.1);
+            color: #8bc34a;
+        }
+
+        .logout-btn {
+            color: #dc2626 !important;
+        }
+
+        .logout-btn:hover {
+            background: rgba(220, 38, 38, 0.1) !important;
+            color: #dc2626 !important;
         }
 
         /* Main Content */
@@ -558,7 +614,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                ðŸŒ± Peapod Finance
+                🌱 Peapod Finance
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
@@ -569,7 +625,21 @@
             </ul>
             <div class="user-menu">
                 <div class="user-avatar" onclick="toggleUserMenu()">JD</div>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">â˜°</button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#" onclick="editProfile()">
+                        <span>⚙️</span>
+                        <span>Profile Settings</span>
+                    </a>
+                    <a href="#" onclick="viewNotifications()">
+                        <span>🔔</span>
+                        <span>Notifications</span>
+                    </a>
+                    <button class="logout-btn" onclick="logout()">
+                        <span>🚪</span>
+                        <span>Logout</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
             </div>
         </div>
     </nav>
@@ -587,23 +657,23 @@
             <nav>
                 <ul class="sidebar-nav">
                     <li><a href="#" class="nav-item active" data-section="overview">
-                        <span class="icon">ðŸ“Š</span>
+                        <span class="icon">📊</span>
                         <span>Overview</span>
                     </a></li>
                     <li><a href="#" class="nav-item" data-section="documents">
-                        <span class="icon">ðŸ“</span>
+                        <span class="icon">📁</span>
                         <span>Documents</span>
                     </a></li>
                     <li><a href="#" class="nav-item" data-section="payments">
-                        <span class="icon">ðŸ’³</span>
+                        <span class="icon">💳</span>
                         <span>Payments</span>
                     </a></li>
                     <li><a href="#" class="nav-item" data-section="applications">
-                        <span class="icon">ðŸ“‹</span>
+                        <span class="icon">📋</span>
                         <span>Applications</span>
                     </a></li>
                     <li><a href="#" class="nav-item" data-section="profile">
-                        <span class="icon">âš™ï¸</span>
+                        <span class="icon">⚙️</span>
                         <span>Settings</span>
                     </a></li>
                 </ul>
@@ -616,7 +686,7 @@
             <section id="overview" class="section active">
                 <div class="section-header">
                     <h1 class="section-title">
-                        <span>ðŸ“Š</span>
+                        <span>📊</span>
                         Dashboard Overview
                     </h1>
                 </div>
@@ -625,7 +695,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Active Loans</span>
-                            <div class="card-icon">ðŸ’°</div>
+                            <div class="card-icon">💰</div>
                         </div>
                         <div class="card-value">2</div>
                         <div class="card-subtitle">Current funding agreements</div>
@@ -634,7 +704,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Total Funded</span>
-                            <div class="card-icon">ðŸ“ˆ</div>
+                            <div class="card-icon">📈</div>
                         </div>
                         <div class="card-value">$125,000</div>
                         <div class="card-subtitle">Lifetime funding received</div>
@@ -643,7 +713,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Next Payment</span>
-                            <div class="card-icon">ðŸ“…</div>
+                            <div class="card-icon">📅</div>
                         </div>
                         <div class="card-value">$2,485</div>
                         <div class="card-subtitle">Due Feb 15, 2025</div>
@@ -652,7 +722,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Documents</span>
-                            <div class="card-icon">ðŸ“</div>
+                            <div class="card-icon">📁</div>
                         </div>
                         <div class="card-value">12</div>
                         <div class="card-subtitle">Uploaded documents</div>
@@ -696,18 +766,18 @@
             <section id="documents" class="section">
                 <div class="section-header">
                     <h1 class="section-title">
-                        <span>ðŸ“</span>
+                        <span>📁</span>
                         Document Center
                     </h1>
                     <div class="section-actions">
                         <button class="btn" onclick="uploadDocument()">
-                            ðŸ“¤ Upload Document
+                            📤 Upload Document
                         </button>
                     </div>
                 </div>
 
                 <div class="upload-area" onclick="uploadDocument()">
-                    <div class="upload-icon">ðŸ“¤</div>
+                    <div class="upload-icon">📤</div>
                     <div class="upload-text">Drag & drop files here or click to browse</div>
                     <div class="upload-subtitle">Supported formats: PDF, PNG, JPG (Max 10MB)</div>
                 </div>
@@ -715,45 +785,45 @@
                 <h3 style="margin-bottom: 20px; color: #8bc34a;">My Documents</h3>
                 <div class="document-grid">
                     <div class="document-card">
-                        <div class="document-icon">ðŸ“„</div>
+                        <div class="document-icon">📄</div>
                         <div class="document-name">Bank Statements</div>
-                        <div class="document-meta">3 files â€¢ 2.4 MB</div>
+                        <div class="document-meta">3 files • 2.4 MB</div>
                         <div class="document-actions">
-                            <button class="action-btn" onclick="viewDocument()">ðŸ‘ï¸</button>
-                            <button class="action-btn" onclick="downloadDocument()">ðŸ“¥</button>
-                            <button class="action-btn" onclick="deleteDocument()">ðŸ—‘ï¸</button>
+                            <button class="action-btn" onclick="viewDocument()">👁️</button>
+                            <button class="action-btn" onclick="downloadDocument()">📥</button>
+                            <button class="action-btn" onclick="deleteDocument()">🗑️</button>
                         </div>
                     </div>
 
                     <div class="document-card">
-                        <div class="document-icon">ðŸ“Š</div>
+                        <div class="document-icon">📊</div>
                         <div class="document-name">Tax Returns</div>
-                        <div class="document-meta">2 files â€¢ 1.8 MB</div>
+                        <div class="document-meta">2 files • 1.8 MB</div>
                         <div class="document-actions">
-                            <button class="action-btn" onclick="viewDocument()">ðŸ‘ï¸</button>
-                            <button class="action-btn" onclick="downloadDocument()">ðŸ“¥</button>
-                            <button class="action-btn" onclick="deleteDocument()">ðŸ—‘ï¸</button>
+                            <button class="action-btn" onclick="viewDocument()">👁️</button>
+                            <button class="action-btn" onclick="downloadDocument()">📥</button>
+                            <button class="action-btn" onclick="deleteDocument()">🗑️</button>
                         </div>
                     </div>
 
                     <div class="document-card">
-                        <div class="document-icon">ðŸ¢</div>
+                        <div class="document-icon">🏢</div>
                         <div class="document-name">Business License</div>
-                        <div class="document-meta">1 file â€¢ 0.5 MB</div>
+                        <div class="document-meta">1 file • 0.5 MB</div>
                         <div class="document-actions">
-                            <button class="action-btn" onclick="viewDocument()">ðŸ‘ï¸</button>
-                            <button class="action-btn" onclick="downloadDocument()">ðŸ“¥</button>
-                            <button class="action-btn" onclick="deleteDocument()">ðŸ—‘ï¸</button>
+                            <button class="action-btn" onclick="viewDocument()">👁️</button>
+                            <button class="action-btn" onclick="downloadDocument()">📥</button>
+                            <button class="action-btn" onclick="deleteDocument()">🗑️</button>
                         </div>
                     </div>
 
                     <div class="document-card">
-                        <div class="document-icon">ðŸ“‹</div>
+                        <div class="document-icon">📋</div>
                         <div class="document-name">Loan Agreement</div>
-                        <div class="document-meta">1 file â€¢ 1.2 MB</div>
+                        <div class="document-meta">1 file • 1.2 MB</div>
                         <div class="document-actions">
-                            <button class="action-btn" onclick="viewDocument()">ðŸ‘ï¸</button>
-                            <button class="action-btn" onclick="downloadDocument()">ðŸ“¥</button>
+                            <button class="action-btn" onclick="viewDocument()">👁️</button>
+                            <button class="action-btn" onclick="downloadDocument()">📥</button>
                         </div>
                     </div>
                 </div>
@@ -774,8 +844,8 @@
                             <td>Capital Growth Partners</td>
                             <td>Dec 15, 2024</td>
                             <td>
-                                <button class="action-btn" onclick="viewDocument()">ðŸ‘ï¸</button>
-                                <button class="action-btn" onclick="downloadDocument()">ðŸ“¥</button>
+                                <button class="action-btn" onclick="viewDocument()">👁️</button>
+                                <button class="action-btn" onclick="downloadDocument()">📥</button>
                             </td>
                         </tr>
                         <tr>
@@ -783,8 +853,8 @@
                             <td>Swift Capital Solutions</td>
                             <td>Nov 28, 2024</td>
                             <td>
-                                <button class="action-btn" onclick="viewDocument()">ðŸ‘ï¸</button>
-                                <button class="action-btn" onclick="downloadDocument()">ðŸ“¥</button>
+                                <button class="action-btn" onclick="viewDocument()">👁️</button>
+                                <button class="action-btn" onclick="downloadDocument()">📥</button>
                             </td>
                         </tr>
                     </tbody>
@@ -795,12 +865,12 @@
             <section id="payments" class="section">
                 <div class="section-header">
                     <h1 class="section-title">
-                        <span>ðŸ’³</span>
+                        <span>💳</span>
                         Payment Center
                     </h1>
                     <div class="section-actions">
                         <button class="btn" onclick="makePayment()">
-                            ðŸ’³ Make Payment
+                            💳 Make Payment
                         </button>
                     </div>
                 </div>
@@ -875,12 +945,12 @@
             <section id="applications" class="section">
                 <div class="section-header">
                     <h1 class="section-title">
-                        <span>ðŸ“‹</span>
+                        <span>📋</span>
                         My Applications
                     </h1>
                     <div class="section-actions">
                         <a href="PeapodCALCULATOR.HTML" class="btn">
-                            âž• New Application
+                            ➕ New Application
                         </a>
                     </div>
                 </div>
@@ -889,7 +959,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Total Applications</span>
-                            <div class="card-icon">ðŸ“Š</div>
+                            <div class="card-icon">📊</div>
                         </div>
                         <div class="card-value">4</div>
                         <div class="card-subtitle">All time submissions</div>
@@ -898,7 +968,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Approved</span>
-                            <div class="card-icon">âœ…</div>
+                            <div class="card-icon">✅</div>
                         </div>
                         <div class="card-value">2</div>
                         <div class="card-subtitle">Successfully funded</div>
@@ -907,7 +977,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">In Review</span>
-                            <div class="card-icon">ðŸ”</div>
+                            <div class="card-icon">🔍</div>
                         </div>
                         <div class="card-value">1</div>
                         <div class="card-subtitle">Currently processing</div>
@@ -916,7 +986,7 @@
                     <div class="overview-card">
                         <div class="card-header">
                             <span class="card-title">Success Rate</span>
-                            <div class="card-icon">ðŸ“ˆ</div>
+                            <div class="card-icon">📈</div>
                         </div>
                         <div class="card-value">75%</div>
                         <div class="card-subtitle">Approval percentage</div>
@@ -942,7 +1012,7 @@
                             <td>Jan 5, 2025</td>
                             <td>Capital Growth Partners</td>
                             <td><span class="status-badge status-active">Funded</span></td>
-                            <td><button class="action-btn" onclick="viewApplication()">ðŸ‘ï¸</button></td>
+                            <td><button class="action-btn" onclick="viewApplication()">👁️</button></td>
                         </tr>
                         <tr>
                             <td>#APP-2024-003</td>
@@ -950,7 +1020,7 @@
                             <td>Nov 15, 2024</td>
                             <td>Swift Capital Solutions</td>
                             <td><span class="status-badge status-completed">Completed</span></td>
-                            <td><button class="action-btn" onclick="viewApplication()">ðŸ‘ï¸</button></td>
+                            <td><button class="action-btn" onclick="viewApplication()">👁️</button></td>
                         </tr>
                         <tr>
                             <td>#APP-2024-002</td>
@@ -958,7 +1028,7 @@
                             <td>Sep 8, 2024</td>
                             <td>-</td>
                             <td><span class="status-badge status-overdue">Declined</span></td>
-                            <td><button class="action-btn" onclick="viewApplication()">ðŸ‘ï¸</button></td>
+                            <td><button class="action-btn" onclick="viewApplication()">👁️</button></td>
                         </tr>
                         <tr>
                             <td>#APP-2024-001</td>
@@ -966,7 +1036,7 @@
                             <td>Jun 20, 2024</td>
                             <td>Progressive Business Finance</td>
                             <td><span class="status-badge status-pending">In Review</span></td>
-                            <td><button class="action-btn" onclick="viewApplication()">ðŸ‘ï¸</button></td>
+                            <td><button class="action-btn" onclick="viewApplication()">👁️</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -976,12 +1046,12 @@
             <section id="profile" class="section">
                 <div class="section-header">
                     <h1 class="section-title">
-                        <span>âš™ï¸</span>
+                        <span>⚙️</span>
                         Account Settings
                     </h1>
                     <div class="section-actions">
                         <button class="btn secondary" onclick="editProfile()">
-                            âœï¸ Edit Profile
+                            ✏️ Edit Profile
                         </button>
                     </div>
                 </div>
@@ -1079,6 +1149,34 @@
             navLinks.classList.toggle('active');
         });
 
+        // User menu toggle
+        function toggleUserMenu() {
+            const userDropdown = document.getElementById('userDropdown');
+            userDropdown.classList.toggle('active');
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.querySelector('.user-menu');
+            const userDropdown = document.getElementById('userDropdown');
+            
+            if (!userMenu.contains(event.target)) {
+                userDropdown.classList.remove('active');
+            }
+        });
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear any stored session data (if using localStorage/sessionStorage)
+                // localStorage.clear();
+                // sessionStorage.clear();
+                
+                // Redirect to login page
+                window.location.href = 'PeapodLOGIN.html';
+            }
+        }
+
         // Sidebar navigation
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function(e) {
@@ -1099,55 +1197,54 @@
             });
         });
 
-        // User menu toggle
-        function toggleUserMenu() {
-            alert('User menu would show logout, profile settings, etc.');
-        }
-
         // Document functions
         function uploadDocument() {
-            alert('ðŸ“¤ Document Upload\n\nThis would open a file picker to upload documents to your secure document vault.');
+            alert('📤 Document Upload\n\nThis would open a file picker to upload documents to your secure document vault.');
         }
 
         function viewDocument() {
-            alert('ðŸ‘ï¸ View Document\n\nThis would open the document in a secure viewer.');
+            alert('👁️ View Document\n\nThis would open the document in a secure viewer.');
         }
 
         function downloadDocument() {
-            alert('ðŸ“¥ Download Document\n\nThis would securely download the document to your device.');
+            alert('📥 Download Document\n\nThis would securely download the document to your device.');
         }
 
         function deleteDocument() {
             if (confirm('Are you sure you want to delete this document?')) {
-                alert('ðŸ—‘ï¸ Document deleted successfully.');
+                alert('🗑️ Document deleted successfully.');
             }
         }
 
         // Payment functions
         function makePayment() {
-            alert('ðŸ’³ Make Payment\n\nThis would open the secure payment portal to make a payment towards your loan balance.');
+            alert('💳 Make Payment\n\nThis would open the secure payment portal to make a payment towards your loan balance.');
         }
 
         // Application functions
         function viewApplication() {
-            alert('ðŸ“‹ View Application\n\nThis would show detailed information about the selected application.');
+            alert('📋 View Application\n\nThis would show detailed information about the selected application.');
         }
 
         // Profile functions
         function editProfile() {
-            alert('âœï¸ Edit Profile\n\nThis would open a form to update your personal and business information.');
+            alert('✏️ Edit Profile\n\nThis would open a form to update your personal and business information.');
+        }
+
+        function viewNotifications() {
+            alert('🔔 Notifications\n\nThis would show your recent notifications and alerts.');
         }
 
         function setupTwoFactor() {
-            alert('ðŸ” Two-Factor Authentication\n\nThis would guide you through setting up 2FA for enhanced security.');
+            alert('🔐 Two-Factor Authentication\n\nThis would guide you through setting up 2FA for enhanced security.');
         }
 
         function changePassword() {
-            alert('ðŸ”‘ Change Password\n\nThis would open a secure form to update your password.');
+            alert('🔑 Change Password\n\nThis would open a secure form to update your password.');
         }
 
         function toggleNotifications() {
-            alert('ðŸ”” Notifications\n\nLogin notification settings updated.');
+            alert('🔔 Notifications\n\nLogin notification settings updated.');
         }
 
         // Add smooth animations for cards
