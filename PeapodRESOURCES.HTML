@@ -1250,21 +1250,26 @@
 
         // Article opening
         function openArticle(articleId) {
-            const articleTitles = {
-                'main-featured': 'The Complete Guide to Business Financing in 2025',
-                'secondary-1': 'Cash Flow Calculator',
-                'secondary-2': 'Verde Restaurant Success Story',
-                'card-1': '5 Signs Your Business Needs Working Capital',
-                'card-2': 'Business Loan Payment Calculator',
-                'card-3': 'Equipment Financing vs. Traditional Loans',
-                'card-4': 'TechStart\'s $2M Growth Journey',
-                'card-5': 'Understanding Your Credit Score',
-                'card-6': 'Loan Application Checklist'
-            };
-            
-            alert(`📖 Opening: ${articleTitles[articleId]}\n\nYou will be redirected to the full article or interactive tool.`);
-            // In real application: window.location.href = `/resources/${articleId}`;
-        }
+    const externalLinks = {
+        'main-featured': 'https://www.forbes.com/sites/forbesfinancecouncil/2024/12/15/business-financing-trends-2025/',
+        'secondary-1': 'https://www.calculator.net/business-loan-calculator.html',
+        'secondary-2': 'https://www.restaurantbusinessonline.com/financing/how-restaurant-chain-doubled-revenue-strategic-financing',
+        'card-1': 'https://www.investopedia.com/articles/pf/12/working-capital-management.asp',
+        'card-2': 'https://www.sba.gov/funding-programs/loans/loan-calculator',
+        'card-3': 'https://www.nerdwallet.com/article/small-business/equipment-financing',
+        'card-4': 'https://www.inc.com/jeff-haden/how-this-startup-grew-from-0-to-2-million-in-revenue.html',
+        'card-5': 'https://www.experian.com/blogs/small-business/business-credit-score-guide/',
+        'card-6': 'https://www.fundera.com/blog/business-loan-application-checklist'
+    };
+    
+    const url = externalLinks[articleId];
+    if (url) {
+        // Open in new tab so users don't leave your site
+        window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+        alert('Content coming soon! Check back later.');
+    }
+}
 
         // Load more content
         function loadMoreContent() {
