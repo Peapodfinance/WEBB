@@ -569,11 +569,11 @@
             }
             
             static redirectToProfile() {
-                window.location.href = 'PeapodPROFILE.HTML';
+                window.location.href = 'PeapodUSERPROFILE.html';
             }
             
             static redirectToLogin() {
-                window.location.href = 'PeapodLOGIN.HTML';
+                window.location.href = 'PeapodLOGIN.html';
             }
         }
 
@@ -695,78 +695,5 @@
             }
         });
     </script>
-<!-- Add these script tags before your existing script -->
-<script src="js/session-manager.js"></script>
-<script src="js/api-client.js"></script>
-<script src="js/auth-guard.js"></script>
-
-<script>
-// Check if user is already logged in
-document.addEventListener('DOMContentLoaded', function() {
-    const session = SessionManager.getSession();
-    if (session && session.isLoggedIn) {
-        SessionManager.redirectToProfile();
-    }
-});
-
-// Login form handler
-document.getElementById('loginForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const rememberMe = document.getElementById('rememberMe').checked;
-    const loginButton = document.getElementById('loginButton');
-    const messageBox = document.getElementById('messageBox');
-    
-    // Show loading state
-    loginButton.disabled = true;
-    loginButton.classList.add('loading');
-    hideMessage();
-    
-    try {
-        // Attempt login
-        const response = await PeapodAPI.login(email, password);
-        
-        if (response.success) {
-            // Store session
-            SessionManager.setSession(response.user, response.token, rememberMe);
-            
-            // Show success message
-            showMessage('Login successful! Redirecting to your dashboard...', 'success');
-            
-            // Redirect to profile after short delay
-            setTimeout(() => {
-                SessionManager.redirectToProfile();
-            }, 1500);
-        }
-    } catch (error) {
-        // Show error message
-        showMessage(error.message, 'error');
-        
-        // Reset form state
-        loginButton.disabled = false;
-        loginButton.classList.remove('loading');
-    }
-});
-
-// Demo credentials function
-function fillDemoCredentials() {
-    document.getElementById('email').value = 'demo@peapodfinance.com';
-    document.getElementById('password').value = 'demo123';
-}
-
-function showMessage(text, type) {
-    const messageBox = document.getElementById('messageBox');
-    messageBox.textContent = text;
-    messageBox.className = `message ${type}`;
-    messageBox.style.display = 'block';
-}
-
-function hideMessage() {
-    const messageBox = document.getElementById('messageBox');
-    messageBox.style.display = 'none';
-}
-</script>
 </body>
 </html>
