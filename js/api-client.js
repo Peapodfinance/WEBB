@@ -165,7 +165,7 @@ class PeapodAPI {
         await new Promise(resolve => setTimeout(resolve, 1500));
         
         // Check demo users
-        const user = this.DEMO_USERS[email.toLowerCase()];
+        const user = email ? this.DEMO_USERS[email.toLowerCase()] : null;
         
         if (!user || user.password !== password) {
             throw new Error('Invalid email or password');
