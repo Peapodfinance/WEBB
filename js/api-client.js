@@ -188,6 +188,7 @@ class PeapodAPI {
                 employees: user.employees
             },
             token: token
+        },
             static async register(userData) {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 2000));
